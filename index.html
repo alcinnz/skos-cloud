@@ -2,8 +2,17 @@
 <html>
 <head>
   <title>SKOS Visualization</title>
+  <script src="n3.js"></script>
+  <script src="skos-parser.js"></script>
 </head>
 <body>
   <p>Work is in progress...</p>
+  <script>
+    fetchVocab("agrovoc.ttl").then(vocabParsed)
+
+    function vocabParsed(concepts) {
+      document.querySelector('p').innerText = JSON.stringify(concepts)
+    }
+  </script>
 </body>
 </html>
