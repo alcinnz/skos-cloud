@@ -4,15 +4,17 @@
   <title>SKOS Visualization</title>
   <script src="n3.js"></script>
   <script src="skos-parser.js"></script>
+  <script src="layout.js"></script>
 </head>
 <body>
-  <p>Work is in progress...</p>
   <script>
     fetchVocab("agrovoc.ttl").then(vocabParsed)
 
     function vocabParsed(concepts) {
-      document.querySelector('p').innerText = JSON.stringify(concepts)
+      document.querySelector('p').innerText =
+            JSON.stringify(layoutVocab(concepts))
     }
   </script>
+  <div><p>Loading vocabulary...</p></div>
 </body>
 </html>
