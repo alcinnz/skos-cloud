@@ -5,7 +5,7 @@
     Outputs a JSON tree containing id, label, colour, scale, horizontal, x, & y
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
-function layoutVocab(vocab, title, font, fontHeight) {
+function layoutVocab(vocab, bbox, title, font, fontHeight) {
   if (!title) title = "Vocabulary"
   if (!font) font = "bold 50px Arial"
   if (!fontHeight) fontHeight = 50; // MUST match font declaration
@@ -79,6 +79,39 @@ function layoutVocab(vocab, title, font, fontHeight) {
     return layer.height
   }
 
+  function scaleRoot(layer, bbox) {
+    layer.scale = Math.min(bbox.height/layer.height, bbox.width/layer.width)
+  }
+
+  function layoutBranches(layer) {
+    /* This assumes scaling will be applied at render time,
+        hence we just need to clarify a few layout properties. */
+    layer.textTop = 0
+    var x = 0
+    for (var branch of layer.top) {
+      branch.horizontal = !layer.horizontal
+      if (branch.width > layer.textTop) layer.textTop = layer.width
+
+      branch.x = x
+      x += branch.height
+
+      layoutBranches(branch)
+    }
+
+    layer.textBottom = layer.textTop + fontHeight
+    x = 0
+    for (var branch of layer.top) {
+      branch.horizontal = !layer.horizontal
+
+      branch.x = x
+      x += branch.height
+
+      layoutBranches(branch)
+    }
+  }
+
   scaleBranches(renderTree)
+  layoutBranches(renderTree)
+  //scaleRoot(renderTree, bbox)
   return renderTree
 }
