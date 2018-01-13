@@ -156,7 +156,8 @@ function layoutVocab(vocab, bbox, title, font, fontHeight) {
   function flattenRenderTree(layer, words) {
     words.append({
         label: layer.label, colour: layer.colour, fontHeight: layer.fontHeight,
-        x: layer.bbox.wordX, y: layer.bbox.wordY})
+        x: layer.bbox.wordX, y: layer.bbox.wordY,
+        id: layer.id})
 
     for (var branch of branches) flattenRenderTree(branch, words)
     return words
