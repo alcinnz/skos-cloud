@@ -8,7 +8,7 @@ be helpful for communicating those additional properties via interaction. */
 function layoutVocab(vocab, bbox, title, font, fontHeight) {
   if (!title) title = "Vocabulary"
   if (!font) font = "bold 50px Arial"
-  if (!fontHeight) fontHeight = 50; // MUST match font declaration
+  if (!fontHeight) fontHeight = 200; // MUST match font declaration
 
   var renderTree = {id: "", label: title, colour: "#000", horizontal: true,
         branches: []}
@@ -100,7 +100,7 @@ function layoutVocab(vocab, bbox, title, font, fontHeight) {
 
     layer.textBottom = layer.textTop + fontHeight
     x = 0
-    for (var branch of layer.top) {
+    for (var branch of layer.branches) {
       branch.horizontal = !layer.horizontal
 
       branch.x = x
@@ -108,6 +108,58 @@ function layoutVocab(vocab, bbox, title, font, fontHeight) {
 
       layoutBranches(branch)
     }
+  }
+
+  function scaleTextAndBBoxes(layer, parent, scale, rootx, rooty) {
+    layer.scale *= scale
+    layer.fontHeight = fontHeight * layer.scale
+
+    layer.bbox = {x: rootx + layer.x*layer.scale, y: rooty,
+        height: parent.textTop*parent.scale, width: layer.width*layer.scale}
+
+    for (var branch of layer.branches) {
+      scaleTextAndBBoxes(branch, layer, layer.scale, layer.bbox.y, layer.bbox.x)
+    }
+  }
+
+  function positionPerpendicular(layer) {
+    for (var branch of layer.top) {
+      branch.bbox.y += branch.bbox.height - (branch.height*branch.scale)
+      positionPerpendicular(branch)
+    }
+    for (var branch of layer.bottom) {
+      branch.bbox.y += layer.textBottom * layer.scale
+      positionPerpendicular(branch)
+    }
+  }
+
+  function positionWords(layer) {
+    layer.bbox.wordX = layer.bbox.x
+    layer.bbox.wordY = layer.bbox.y + layer.wordTop * layer.scale
+
+    for (var branch of layer.branches) positionWords(branch)
+  }
+
+  function reorientVertical(layer) {
+    if (!layer.horizontal) {
+      var bbox = layer.bbox
+      layer.bbox = {x: bbox.y, y: bbox.x, height: bbox.width, width: bbox.height,
+            wordX: bbox.wordY, wordY: bbox.wordX}
+
+      var verticalLabel = ""
+      for (var char of layer.label) verticalLabel += char + "\n"
+      layer.label = verticalLabel
+    }
+    for (var branch of layer.branches) reorientVertical(branch)
+  }
+
+  function flattenRenderTree(layer, words) {
+    words.append({
+        label: layer.label, colour: layer.colour, fontHeight: layer.fontHeight,
+        x: layer.bbox.wordX, y: layer.bbox.wordY})
+
+    for (var branch of branches) flattenRenderTree(branch, words)
+    return words
   }
 
   scaleBranches(renderTree)
