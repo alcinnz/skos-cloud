@@ -6,8 +6,9 @@
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
 function layoutVocab(vocab, bbox, title, font, fontHeight) {
+  if (!bbox) bbox = {}
   if (!title) title = "Vocabulary"
-  if (!font) font = "bold 50px Arial"
+  if (!font) font = "bold 200px Arial"
   if (!fontHeight) fontHeight = 200; // MUST match font declaration
 
   var renderTree = {id: "", label: title, colour: "#000", horizontal: true,
@@ -80,7 +81,9 @@ function layoutVocab(vocab, bbox, title, font, fontHeight) {
   }
 
   function scaleRoot(layer, bbox) {
-    layer.scale = Math.min(bbox.height/layer.height, bbox.width/layer.width)
+    /*layer.scale = Math.min('height' in bbox ? bbox.height/layer.height : Infinity,
+                            'width' in bbox ? bbox.width/layer.width : Infinity)*/
+    if (!layer.scale) layer.scale = 1
   }
 
   function layoutBranches(layer) {
@@ -154,17 +157,22 @@ function layoutVocab(vocab, bbox, title, font, fontHeight) {
   }
 
   function flattenRenderTree(layer, words) {
-    words.append({
+    words.push({
         label: layer.label, colour: layer.colour, fontHeight: layer.fontHeight,
         x: layer.bbox.wordX, y: layer.bbox.wordY,
         id: layer.id})
 
-    for (var branch of branches) flattenRenderTree(branch, words)
+    for (var branch of layer.branches) flattenRenderTree(branch, words)
     return words
   }
 
   scaleBranches(renderTree)
   layoutBranches(renderTree)
-  //scaleRoot(renderTree, bbox)
-  return renderTree
+  scaleRoot(renderTree, bbox)
+
+  scaleTextAndBBoxes(renderTree, {textTop: bbox.height, scale: 1}, 1, 0, 0)
+  positionPerpendicular(renderTree)
+  positionWords(renderTree)
+  reorientVertical(renderTree)
+  return flattenRenderTree(renderTree, [])
 }
