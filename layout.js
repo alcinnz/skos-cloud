@@ -5,14 +5,12 @@
     Outputs a JSON tree containing id, label, colour, scale, horizontal, x, & y
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
-function layoutVocab(vocab, bbox, title, font, fontHeight) {
+function layoutVocab(vocab, bbox, title, font) {
   if (!bbox) bbox = {}
   if (!title) title = "Vocabulary"
-  if (!font) font = "bold 200px Arial"
-  if (!fontHeight) fontHeight = 200; // MUST match font declaration
+  if (!font) font = {size: 100, minSize: 5, step: 10, style: "bold ? sans-serif"}
 
-  var renderTree = {id: "", label: title, colour: "#000", horizontal: true,
-        branches: []}
+  var renderTree = {id: "", label: title, colour: "#000", branches: [], offset: 0}
 
   function buildRenderTree(concept) {
     var layer = {id: concept.id, label: concept.label, branches: []}
@@ -28,151 +26,147 @@ function layoutVocab(vocab, bbox, title, font, fontHeight) {
     renderTree.branches.push(buildRenderTree(concept))
   }
 
-  var canvas = document.createElement("canvas").getContext("2d")
-  canvas.font = font
-  function scaleBranches(layer) {
-    /* NOTE: The alternating orientations may cause some confusion here between
-        width and height */
-    // 1) Estimate width of all branches
-    var branchWidth = 0
-    for (var branch of layer.branches) branchWidth += scaleBranches(branch)
-    branchWidth = branchWidth >> 1 // Since there are two sides to position along
+  if (renderTree.branches.length == 1) renderTree = renderTree.branches[0]
 
-    // 2) Have a branch choose a side, in order to finalize the width.
-    layer.top = []; layer.bottom = []
-    var topWidth = 0, bottomWidth = 0
+  function estimateLayout(layer, fontSize) {
+    if (fontSize < font.minSize) {
+        // Don't let text get unreadable, require interaction instead. 
+        layer.parallelSize = layer.perpendicularSize = 0
+        return
+    }
+    layer.fontSize = fontSize
+
+    /**
+     * Uses canvas.measureText to compute and return the width of the given text of given font in pixels.
+     * 
+     * @param {String} text The text to be rendered.
+     * @param {String} font The css font descriptor that text is to be rendered with (e.g. "bold 14px verdana").
+     * 
+     * @see https://stackoverflow.com/questions/118241/calculate-text-width-with-javascript/21015393#21015393
+     */
+    function getTextWidth(text, font) {
+        // re-use canvas object for better performance
+        var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+        var context = canvas.getContext("2d");
+        context.font = font;
+        var metrics = context.measureText(text);
+        return metrics.width;
+    }
+
+    // First pass length: sum of branches / 2
+    var parallelSize = 0;
     for (var branch of layer.branches) {
-      if (branch.height + topWidth <= branchWidth) {
+      estimateLayout(branch, fontSize - font.step)
+      parallelSize += branch.perpendicularSize
+    }
+    parallelSize >>= 1
+
+    // Second pass length: ensure the branches fit
+    // Since this is a NP-complete problem (the Knapsack problem),
+    //      this only approximates a rough solution. 
+    layer.top = []; layer.bottom = []
+    var topSize = 0, bottomSize = 0
+    for (var branch of layer.branches) {
+      if (layer.perpendicularSize == 0) continue
+
+      var combinedTop = topSize + branch.perpendicularSize
+      var combinedBottom = bottomSize + branch.perpendicularSize
+      if (combinedTop <= parallelSize) {
+        branch.offset = topSize
+        topSize = combinedTop
         layer.top.push(branch)
-        topWidth += branch.height
-      } else if (branch.height + bottomWidth <= branchWidth) {
+      } else if (combinedBottom <= parallelSize) {
+        branch.offset = bottomSize
+        bottomSize = combinedBottom
         layer.bottom.push(branch)
-        bottomWidth += branch.height
       } else {
-        // We're overflowing, so choose the shorter side
-        if (topWidth < bottomWidth) {
-          layer.top.push(branch); topWidth += branch.height
+        // Now minimize the excess length
+        if (combinedTop < combinedBottom) {
+          branch.offset = topSize
+          topSize = combinedTop
+          layer.top.push(branch)
         } else {
-          layer.bottom.push(branch); bottomWidth += branch.height
+          branch.offset = bottomSize
+          bottomSize = combinedBottom
+          layer.bottom.push(branch)
         }
       }
     }
-    branchWidth = Math.max(topWidth, bottomWidth)
+    layer.topLength = topSize; layer.bottomLength = bottomSize
+    parallelSize = Math.max(topSize, bottomSize)
 
-    // 3) compute label size and the scaling factor for all branches
-    var textSize = canvas.measureText(layer.label)
-    layer.width = textSize.width
-    // scale*branchWidth = textSize.width
-    var scale = layer.width/branchWidth
+    // Third pass: Ensure text fits
+    var textLength = getTextWidth(layer.label, font.style.replace("?", fontSize+"px"))
+    layer.parallelSize = Math.max(textLength, parallelSize)
 
-    // 4) Apply scale to children
-    for (var branch of layer.branches) branch.scale = scale
-
-    // 5) Compute height
-    var topWidth = 0
-    for (var branch of layer.top)
-        if (branch.width > topWidth) topWidth = branch.width
-    var bottomWidth = 0
-    for (var branch of layer.bottom)
-        if (branch.width > bottomWidth) bottomWidth = branch.width
-    layer.height = topWidth + fontHeight + bottomWidth
-
-    return layer.height
-  }
-
-  function scaleRoot(layer, bbox) {
-    /*layer.scale = Math.min('height' in bbox ? bbox.height/layer.height : Infinity,
-                            'width' in bbox ? bbox.width/layer.width : Infinity)*/
-    if (!layer.scale) layer.scale = 1
-  }
-
-  function layoutBranches(layer) {
-    /* This assumes scaling will be applied at render time,
-        hence we just need to clarify a few layout properties. */
-    layer.textTop = 0
-    var x = 0
+    // Compute perpendicular length
+    topSize = bottomSize = 0
     for (var branch of layer.top) {
-      branch.horizontal = !layer.horizontal
-      if (branch.width > layer.textTop) layer.textTop = layer.width
-
-      branch.x = x
-      x += branch.height
-
-      layoutBranches(branch)
-    }
-
-    layer.textBottom = layer.textTop + fontHeight
-    x = 0
-    for (var branch of layer.branches) {
-      branch.horizontal = !layer.horizontal
-
-      branch.x = x
-      x += branch.height
-
-      layoutBranches(branch)
-    }
-  }
-
-  function scaleTextAndBBoxes(layer, parent, scale, rootx, rooty) {
-    layer.scale *= scale
-    layer.fontHeight = fontHeight * layer.scale
-
-    layer.bbox = {x: rootx + layer.x*layer.scale, y: rooty,
-        height: parent.textTop*parent.scale, width: layer.width*layer.scale}
-
-    for (var branch of layer.branches) {
-      scaleTextAndBBoxes(branch, layer, layer.scale, layer.bbox.y, layer.bbox.x)
-    }
-  }
-
-  function positionPerpendicular(layer) {
-    for (var branch of layer.top) {
-      branch.bbox.y += branch.bbox.height - (branch.height*branch.scale)
-      positionPerpendicular(branch)
+      if (branch.parallelSize > topSize) topSize = branch.parallelSize
     }
     for (var branch of layer.bottom) {
-      branch.bbox.y += layer.textBottom * layer.scale
-      positionPerpendicular(branch)
+      if (branch.parallelSize > bottomSize) bottomSize = branch.parallelSize
+    }
+    layer.perpendicularSize = topSize + fontSize + bottomSize
+    layer.topSize = topSize; layer.bottomSize = bottomSize
+  }
+
+  function finalizeLayout(layer) {
+    var padding = (layer.parallelSize - layer.topLength)/layer.top.length
+    var xoffset = 0
+    for (var branch of layer.top) {
+      branch.parallelSize = layer.topSize
+      finalizeLayout(branch)
+      branch.offset += xoffset
+      xoffset += padding
+    }
+
+    padding = (layer.parallelSize - layer.bottomLength)/layer.bottom.length
+    xoffset = 0
+    for (var branch of layer.bottom) {
+      branch.parallelSize = layer.bottomSize
+      finalizeLayout(branch)
+      branch.offset += xoffset
+      xoffset += padding
     }
   }
 
-  function positionWords(layer) {
-    layer.bbox.wordX = layer.bbox.x
-    layer.bbox.wordY = layer.bbox.y + layer.wordTop * layer.scale
+  function positionWords(layer, horizontal, rootX, rootY) {
+    if (horizontal) {
+      layer.x = rootX
+      layer.y = rootY + layer.offset + layer.topSize
+      layer.width = layer.perpendicularSize
+      layer.height = layer.parallelSize
 
-    for (var branch of layer.branches) positionWords(branch)
-  }
+      for (var branch of layer.top)
+        positionWords(branch, !horizontal, rootX, rootY + layer.offset)
+      for (var branch of layer.bottom)
+        positionWords(branch, !horizontal, rootX, layer.y + layer.fontSize)
+    } else {
+      layer.x = rootX + layer.offset + layer.topSize
+      layer.y = rootY
+      layer.width = layer.parallelSize
+      layer.height = layer.perpendicularSize
 
-  function reorientVertical(layer) {
-    if (!layer.horizontal) {
-      var bbox = layer.bbox
-      layer.bbox = {x: bbox.y, y: bbox.x, height: bbox.width, width: bbox.height,
-            wordX: bbox.wordY, wordY: bbox.wordX}
-
-      var verticalLabel = ""
-      for (var char of layer.label) verticalLabel += char + "\n"
-      layer.label = verticalLabel
+      for (var branch of layer.top)
+        positionWords(branch, !horizontal, rootX + layer.offset, rootY)
+      for (var branch of layer.bottom)
+        positionWords(branch, !horizontal, layer.x + layer.fontSize, rootY)
     }
-    for (var branch of layer.branches) reorientVertical(branch)
   }
 
-  function flattenRenderTree(layer, words) {
-    words.push({
-        label: layer.label, colour: layer.colour, fontHeight: layer.fontHeight,
-        x: layer.bbox.wordX, y: layer.bbox.wordY,
-        id: layer.id})
+  function flattenRenderTree(l, words) {
+    if (l.parallelSize == 0) return words // These are marked as too-small to render
 
-    for (var branch of layer.branches) flattenRenderTree(branch, words)
+    words.push({id: l.id, label: l.label,
+        font: font.style.replace("?", l.fontSize + "px"), colour: l.colour,
+        x: l.x, y: l.y, width: l.width, height: l.height})
+    for (var branch of l.branches) flattenRenderTree(branch, words)
     return words
   }
 
-  scaleBranches(renderTree)
-  layoutBranches(renderTree)
-  scaleRoot(renderTree, bbox)
-
-  scaleTextAndBBoxes(renderTree, {textTop: bbox.height, scale: 1}, 1, 0, 0)
-  positionPerpendicular(renderTree)
-  positionWords(renderTree)
-  reorientVertical(renderTree)
+  estimateLayout(renderTree, font.size)
+  finalizeLayout(renderTree)
+  positionWords(renderTree, true, 0, 0)
   return flattenRenderTree(renderTree, [])
 }
