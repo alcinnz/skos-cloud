@@ -14,7 +14,7 @@ function layoutVocab(vocab, bbox, title, font) {
 
   function buildRenderTree(concept) {
     var layer = {id: concept.id, label: concept.label, branches: []}
-    layer.colour = "#f00" // TODO select a random hue
+    layer.colour = d3.hsv(Math.random()*360, 1, 1).toString()
     for (var subconcept of concept.subconcepts)
       layer.branches.push(buildRenderTree(vocab[subconcept]))
     return layer
