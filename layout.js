@@ -8,7 +8,7 @@ be helpful for communicating those additional properties via interaction. */
 function layoutVocab(vocab, bbox, title, font) {
   if (!bbox) bbox = {}
   if (!title) title = "Vocabulary"
-  if (!font) font = {size: 100, minSize: 5, step: 10, style: "bold ? sans-serif"}
+  if (!font) font = {size: 50, minSize: 5, step: 10, style: "bold ? sans-serif"}
 
   var renderTree = {id: "", label: title, colour: "#000", branches: []}
 

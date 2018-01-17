@@ -1,0 +1,39 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix : <odysseus:data/extensions.ttl#> .
+
+: rdf:title "Odysseus Extensions"@en;
+    rdf:comment "Webpages for Odysseus to aid your surfing with."@en.
+
+:nav-aid a skos:Concept; skos:prefLabel "Navigation Aid"@en;
+    skos:note "A page Odysseus should use to aid your web surfing"@en.
+
+:search a skos:Concept; skos:prefLabel "Search Engine"@en;
+    skos:note "Sites to search via the addressbar"@en;
+    skos:narrowerTransitive :nav-aid.
+:search-mono a skos:Concept; skos:prefLabel "Mono Search"@en;
+    skos:note "Search engines which of which can search only one at a time"@en;
+    skos:narrowerTransitive :search.
+:search-topical a skos:Concept; skos:prefLabel "Topical Search"@en;
+    skos:note "Search engines which can all be searched simultaneously."@en;
+    skos:narrowerTransitive :search.
+
+:vocabulary a skos:Concept; skos:prefLabel "Vocabulary"@en;
+    skos:note "A SKOS vocabulary for organizing your bookmarks, like this one"@en;
+    skos:narrowerTransitive :nav-aid.
+:share-link a skos:Concept; skos:prefLabel "Share Link"@en;
+    skos:note "A share link to be accessible via the ★ menu"@en;
+    skos:narrowerTransitive :nav-aid.
+
+:alterations a skos:Concept; skos:prefLabel "Page Modifications"@en;
+    skos:note "Resources intended to alter specified pages."@en;
+    skos:narrowerTransitive :nav-aid.
+:blocker a skos:Concept; skos:prefLabel "Content Blockers"@en;
+    skos:note "Blocks specified resources from loading, e.g. web trackers"@en;
+    skos:narrowerTransitive :alterations.
+:userscript a skos:Concept; skos:prefLabel "UserScripts"@en;
+    skos:note "Altered behaviour of webpages. Be careful of these."@en;
+    skos:narrowerTransitive :alterations.
+:userstyle a skos:Concept; skos:prefLabel "UserStyles"@en;
+    skos:note "Altered presentation of webpages, A.K.A website&browser themes"@en;
+    skos:narrowerTransitive :alterations.
