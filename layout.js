@@ -10,7 +10,7 @@ function layoutVocab(vocab, bbox, title, font) {
   if (!title) title = "Vocabulary"
   if (!font) font = {size: 100, minSize: 5, step: 10, style: "bold ? sans-serif"}
 
-  var renderTree = {id: "", label: title, colour: "#000", branches: [], offset: 0}
+  var renderTree = {id: "", label: title, colour: "#000", branches: []}
 
   function buildRenderTree(concept) {
     var layer = {id: concept.id, label: concept.label, branches: []}
@@ -21,12 +21,13 @@ function layoutVocab(vocab, bbox, title, font) {
   }
 
   for (var id in vocab) {
-    if (!vocab.hasOwnProperty(id) || vocab[id].subconcepts.length) continue
+    if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
     var concept = concepts[id]
     renderTree.branches.push(buildRenderTree(concept))
   }
 
   if (renderTree.branches.length == 1) renderTree = renderTree.branches[0]
+  renderTree.offset = 0 // Won't otherwise get one. 
 
   function estimateLayout(layer, fontSize) {
     if (fontSize < font.minSize) {
@@ -135,8 +136,8 @@ function layoutVocab(vocab, bbox, title, font) {
     if (horizontal) {
       layer.x = rootX
       layer.y = rootY + layer.offset + layer.topSize
-      layer.width = layer.perpendicularSize
-      layer.height = layer.parallelSize
+      layer.width = layer.parallelSize
+      layer.height = layer.fontSize
 
       for (var branch of layer.top)
         positionWords(branch, !horizontal, rootX, rootY + layer.offset)
@@ -145,8 +146,8 @@ function layoutVocab(vocab, bbox, title, font) {
     } else {
       layer.x = rootX + layer.offset + layer.topSize
       layer.y = rootY
-      layer.width = layer.parallelSize
-      layer.height = layer.perpendicularSize
+      layer.width = layer.fontSize
+      layer.height = layer.parallelSize
 
       for (var branch of layer.top)
         positionWords(branch, !horizontal, rootX + layer.offset, rootY)
@@ -155,18 +156,31 @@ function layoutVocab(vocab, bbox, title, font) {
     }
   }
 
+  function verticalText(layer, horizontal) {
+    if (!horizontal) {
+      var newLabel = ""
+      for (var char of layer.label) newLabel += char + "\n"
+      layer.label = newLabel
+
+      layer.fontSize >>= 1
+    }
+
+    for (var branch of layer.branches) verticalText(branch, !horizontal)
+  }
+
   function flattenRenderTree(l, words) {
     if (l.parallelSize == 0) return words // These are marked as too-small to render
 
     words.push({id: l.id, label: l.label,
         font: font.style.replace("?", l.fontSize + "px"), colour: l.colour,
-        x: l.x, y: l.y, width: l.width, height: l.height})
+        x: l.x, y: l.y, width: l.width + "px", height: l.height + "px"})
     for (var branch of l.branches) flattenRenderTree(branch, words)
     return words
   }
 
   estimateLayout(renderTree, font.size)
   finalizeLayout(renderTree)
+  verticalText(renderTree, true)
   positionWords(renderTree, true, 0, 0)
   return flattenRenderTree(renderTree, [])
 }

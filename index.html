@@ -11,13 +11,17 @@
 </head>
 <body>
   <script>
-    fetchVocab("agrovoc.ttl").then(vocabParsed)
+    fetchVocab("odysseus.ttl").then(vocabParsed)
 
     function vocabParsed(concepts) {
+      document.querySelector('p').innerText =
+        JSON.stringify(layoutVocab(concepts))
+      d3.select('div p').remove()
+
       renderVocab(layoutVocab(concepts), d3.select('div'))
     }
   </script>
-  <div style="width: 500px; height: 500px;">
+  <div style="width: 1000px; height: 1000px;">
     <p>Loading vocabulary...</p>
   </div>
 </body>

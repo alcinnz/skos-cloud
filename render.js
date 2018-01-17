@@ -10,8 +10,10 @@ function renderVocab(words, $canvas) {
     .style('color', (word) => word.colour)
     .style('text-align', 'justify')
     .style('position', 'absolute')
-    .style('left', (word) => word.x)
-    .style('top', (word) => word.y)
+    .style('left', (word) => word.x + "px")
+    .style('top', (word) => word.y + "px")
     .style('width', (word) => word.width)
     .style('height', (word) => word.height)
+    .style('line-height', 1.08) // Just what seems to work
+    .style('white-space', 'pre')
 }

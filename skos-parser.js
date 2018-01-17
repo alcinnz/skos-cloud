@@ -32,24 +32,24 @@ function parseVocab_(txt, callback, reject) {
 
       concept.label = text
     }
-    if (triple.predicate == SKOSns+"broader") {
+    if (triple.predicate == SKOSns+"narrower") {
       if (!(triple.object in concepts))
         concepts[triple.object] = {id: triple.object, subconcepts: [],
             related: []}
       concepts[triple.object].subconcepts.push(triple.subject)
     }
-    if (triple.predicate == SKOSns+"narrower") {
+    if (triple.predicate == SKOSns+"broader") {
       concept.subconcepts.push(triple.object)
     }
 
-    if (triple.predicate == SKOSns+"broaderTransitive") {
+    if (triple.predicate == SKOSns+"narrowerTransitive") {
       if (!(triple.object in concepts))
         concepts[triple.object] = {id: triple.object, subconcepts: [],
             related: []}
       concepts[triple.object].subconcepts.push({
             transitive: true, id: triple.subject})
     }
-    if (triple.predicate == SKOSns+"narrowerTransitive")
+    if (triple.predicate == SKOSns+"broaderTransitive")
       triple.subconcepts.push({transitive: true, id: triple.object})
 
     if (triple.predicate == SKOSns+"related")
