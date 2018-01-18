@@ -5,18 +5,26 @@
     Outputs a JSON tree containing id, label, colour, scale, horizontal, x, & y
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
-function layoutVocab(vocab, bbox, title, font) {
-  if (!bbox) bbox = {}
+function layoutVocab(vocab, callback, showChildless, title, font) {
   if (!title) title = "Vocabulary"
-  if (!font) font = {size: 50, minSize: 5, step: 10, style: "bold ? sans-serif"}
+  if (!font) font = {size: 40, minSize: 20, step: 10, style: "bold ? sans-serif"}
 
   var renderTree = {id: "", label: title, colour: "#000", branches: []}
 
   function buildRenderTree(concept) {
     var layer = {id: concept.id, label: concept.label, branches: []}
-    layer.colour = d3.hsv(Math.random()*360, 1, 1).toString()
+    layer.colour = d3.hsv(Math.random()*360, 0.8, 1).toString()
     for (var subconcept of concept.subconcepts)
       layer.branches.push(buildRenderTree(vocab[subconcept]))
+
+    // The visualization can't handle any more than (say) 20 branches
+    //      both in terms of visual clarity and computational effort
+    const MAX_BRANCHES = 8
+    while (layer.branches.length > MAX_BRANCHES) {
+      var segment = layer.branches.slice(0, MAX_BRANCHES)
+      layer.branches = layer.branches.slice(MAX_BRANCHES)
+      layer.branches.push({id: layer.id, label: "...", branches: segment})
+    }
     return layer
   }
 
@@ -30,12 +38,14 @@ function layoutVocab(vocab, bbox, title, font) {
   renderTree.offset = 0 // Won't otherwise get one. 
 
   function estimateLayout(layer, fontSize) {
-    if (fontSize < font.minSize) {
-        // Don't let text get unreadable, require interaction instead. 
-        layer.parallelSize = layer.perpendicularSize = 0
-        return
+    if (fontSize < font.minSize ||
+            (!showChildless && layer.branches.length == 0)) {
+      // Don't let text get unreadable, require interaction instead. 
+      layer.parallelSize = layer.perpendicularSize = 0
+      return
     }
     layer.fontSize = fontSize
+    console.log("estimateLayout()")
 
     /**
      * Uses canvas.measureText to compute and return the width of the given text of given font in pixels.
@@ -114,7 +124,7 @@ function layoutVocab(vocab, bbox, title, font) {
 
   function finalizeLayout(layer) {
     var padding = (layer.parallelSize - layer.topLength)/layer.top.length
-    var xoffset = 0
+    var xoffset = padding >> 1
     for (var branch of layer.top) {
       branch.parallelSize = layer.topSize
       finalizeLayout(branch)
@@ -123,7 +133,7 @@ function layoutVocab(vocab, bbox, title, font) {
     }
 
     padding = (layer.parallelSize - layer.bottomLength)/layer.bottom.length
-    xoffset = 0
+    xoffset = padding >> 1
     for (var branch of layer.bottom) {
       branch.parallelSize = layer.bottomSize
       finalizeLayout(branch)
@@ -178,9 +188,27 @@ function layoutVocab(vocab, bbox, title, font) {
     return words
   }
 
-  estimateLayout(renderTree, font.size)
-  finalizeLayout(renderTree)
-  verticalText(renderTree, true)
-  positionWords(renderTree, true, 0, 0)
-  return flattenRenderTree(renderTree, [])
+  var chain = new Deferred(() => estimateLayout(renderTree, font.size))
+  chain.then(() => finalizeLayout(renderTree))
+    .then(() => verticalText(renderTree, true))
+    .then(() => positionWords(renderTree, true, 0, 0))
+    .then(() => {
+      var words = flattenRenderTree(renderTree, [])
+      setTimeout(callback, 0, words)
+    }, 0)
+  chain.trigger()
+}
+
+function Deferred(func) {
+  this.func = func
+  this.next = {trigger: () => {}}
+}
+Deferred.prototype.then = function(func) {
+  this.next = new Deferred(func)
+  return this.next
+}
+Deferred.prototype.trigger = function() {
+  setTimeout(() => {
+    this.func(); this.next.trigger()
+  }, 0)
 }

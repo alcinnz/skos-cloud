@@ -11,7 +11,7 @@ function parseVocab_(txt, callback, reject) {
     if (err) alert(JSON.stringify(err))
 
     if (!triple) {
-      _normalizeVocab(callback, reject)
+      setTimeout(_normalizeVocab, 0, callback, reject)
       return
     }
     if (!(triple.subject in concepts))
@@ -67,97 +67,110 @@ function fetchVocab(url) {
 }
 
 function _normalizeVocab(callback, reject) {
-  // 1st iteration: create property to store parents & verify concepts
-  for (var id in concepts) {
-    if (!concepts.hasOwnProperty(id)) continue
+  function it1__parents_prop_and_verify() {
+    for (var id in concepts) {
+      if (!concepts.hasOwnProperty(id)) continue
 
-    var concept = concepts[id]
-    concept.parents = []
-    if (!concept.isConcept) {
-      delete concepts[id];
-      continue
-    }
-    if (!("label" in concept))
-      reject("Cannot render vocabulary, unnamed concept!")
-  }
-
-  // 2nd iteration: apply simple parents
-  var first = true
-  for (var id in concepts) {
-    if (!concepts.hasOwnProperty(id)) continue
-
-    var concept = concepts[id]
-    for (var subconcept of concept.subconcepts) {
-      if (subconcept.transitive) subconcept = subconcept.id
-
-      var subconceptObj = concepts[subconcept]
-      if (!subconceptObj || !("parents" in subconceptObj))
-        console.log("Invalid concept:", subconcept, subconceptObj)
-      else subconceptObj.parents.push(id)
-    }
-
-    // skos:related is defined as symmetric
-    for (var related of concept.related) {
-      if (!(related in concepts)) console.log("Invalid concept:", related)
-      else if (concepts[related].related.indexOf(id) != -1)
-        concepts[related].related.push(id)
-    }
-  }
-
-  // 3rd apply transitivity, assert acyclic
-  function walkTree(concept) {
-    var seenSubconcepts = {}
-    concept.ancestorOfCurrent = true
-    for (var i = 0; i < concept.subconcepts.length; i++) {
-      var subconcept = concept.subconcepts[i]
-      if (!subconcept) continue
-
-      var id = subconcept.transitive ? subconcept.id : subconcept
-      if (!(id in concepts) || id in seenSubconcepts) {
-        concept.subconcepts[i] = null
+      var concept = concepts[id]
+      concept.parents = []
+      if (!concept.isConcept) {
+        delete concepts[id];
         continue
-      } else seenSubconcepts[id] = true
+      }
+      if (!("label" in concept))
+        reject("Cannot render vocabulary, unnamed concept!")
+    }
 
-      if (subconcept.transitive) {
-        concept.subconcepts[i] = subconcept.id
-        subconcept.parents = subconcept.parents + concept.parents
-        subconcept = subconcept.id
+    setTimeout(it2__apply_simple_parents, 0)
+  }
+  it1__parents_prop_and_verify()
+
+  function it2__apply_simple_parents() {
+    var first = true
+    for (var id in concepts) {
+      if (!concepts.hasOwnProperty(id)) continue
+
+      var concept = concepts[id]
+      for (var subconcept of concept.subconcepts) {
+        if (subconcept.transitive) subconcept = subconcept.id
+
+        var subconceptObj = concepts[subconcept]
+        if (!subconceptObj || !("parents" in subconceptObj))
+          console.log("Invalid concept:", subconcept, subconceptObj)
+        else subconceptObj.parents.push(id)
       }
 
-      // NOTE: SKOS doesn't require this, but our display does. 
-      // And it's a commonly implied property of SKOS graphs. 
-      if (concepts[subconcept].ancestorOfCurrent) {
-        reject("Invalid Vocabulary: A broader concept can't also be narrower!", concept, subconcept)
-        return
+      // skos:related is defined as symmetric
+      for (var related of concept.related) {
+        if (!(related in concepts)) console.log("Invalid concept:", related)
+        else if (concepts[related].related.indexOf(id) != -1)
+          concepts[related].related.push(id)
       }
-
-      walkTree(concepts[subconcept])
     }
-    concept.ancestorOfCurrent = false
-  }
-  for (var id in concepts) {
-    if (!concepts.hasOwnProperty(id) || concepts[id].parents.length) continue
-    walkTree(concepts[id])
+
+    setTimeout(it3__apply_transitivity__assert_acyclic, 0)
   }
 
-  // 4th deduplicate
-  function deduplicate(arr) {
-    var ret = []
-    var seen = {}
-    for (var concept of arr) {
-      if (!concept || arr in seen) continue
-      seen[concept] = true
-      ret.push(concept)
+  function it3__apply_transitivity__assert_acyclic() {
+    function walkTree(concept) {
+      var seenSubconcepts = {}
+      concept.ancestorOfCurrent = true
+      for (var i = 0; i < concept.subconcepts.length; i++) {
+        var subconcept = concept.subconcepts[i]
+        if (!subconcept) continue
+
+        var id = subconcept.transitive ? subconcept.id : subconcept
+        if (!(id in concepts) || id in seenSubconcepts) {
+          concept.subconcepts[i] = null
+          continue
+        } else seenSubconcepts[id] = true
+
+        if (subconcept.transitive) {
+          concept.subconcepts[i] = subconcept.id
+          subconcept.parents = subconcept.parents + concept.parents
+          subconcept = subconcept.id
+        }
+
+        // NOTE: SKOS doesn't require this, but our display does. 
+        // And it's a commonly implied property of SKOS graphs. 
+        if (concepts[subconcept].ancestorOfCurrent) {
+          reject("Invalid Vocabulary: A broader concept can't also be narrower!", concept, subconcept)
+          return
+        }
+
+        walkTree(concepts[subconcept])
+      }
+      concept.ancestorOfCurrent = false
     }
-    return ret
-  }
-  for (var id in concepts) {
-    if (!concepts.hasOwnProperty(id)) continue;
-    var concept = concepts[id]
-    concept.parents = deduplicate(concept.parents)
-    concept.subconcepts = deduplicate(concept.subconcepts)
-    concept.related = deduplicate(concept.related)
+
+    for (var id in concepts) {
+      if (!concepts.hasOwnProperty(id) || concepts[id].parents.length) continue
+      walkTree(concepts[id])
+    }
+
+    setTimeout(it4__deduplicate, 0)
   }
 
-  callback(concepts)
+  function it4__deduplicate() {
+    function deduplicate(arr) {
+      var ret = []
+      var seen = {}
+      for (var concept of arr) {
+        if (!concept || arr in seen) continue
+        seen[concept] = true
+        ret.push(concept)
+      }
+      return ret
+    }
+
+    for (var id in concepts) {
+      if (!concepts.hasOwnProperty(id)) continue;
+      var concept = concepts[id]
+      concept.parents = deduplicate(concept.parents)
+      concept.subconcepts = deduplicate(concept.subconcepts)
+      concept.related = deduplicate(concept.related)
+    }
+
+    setTimeout(callback, 0, concepts)
+  }
 }
