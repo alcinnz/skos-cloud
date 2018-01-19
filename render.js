@@ -1,7 +1,8 @@
-function renderVocab(words, $canvas) {
+function renderVocab(words, $canvas, size) {
   var bgColour = '#fff'
-  var cloud = $canvas.style('position', 'absolute').selectAll('a')
-                .data(words)
+  $canvas.style('position', 'relative')
+        .style('width', size.width+'px').style('height', size.height+'px')
+  var cloud = $canvas.selectAll('a').data(words)
 
   cloud.exit().remove()
 

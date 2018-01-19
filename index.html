@@ -16,14 +16,21 @@
     function vocabParsed(concepts) {
       document.querySelector('p').innerText = "Laying out vocabulary..."
 
-      layoutVocab(concepts, (words) => {
+      layoutVocab(concepts, (words, flatConcepts, size) => {
         d3.select('div p').remove()
-        renderVocab(words, d3.select('div'))
+        renderVocab(words, d3.select('div'), size)
+
+        var conceptList = d3.select('ul').selectAll('li').data(flatConcepts)
+        conceptList.exit().remove()
+        conceptList.enter().append('li').text((data) => data.label)
+        conceptList.text((data) => data.label)
       })
     }
   </script>
   <div style="width: 1000px; height: 1000px;">
     <p>Loading vocabulary...</p>
   </div>
+  <ul style="column-count: 5">
+  </ul>
 </body>
 </html>

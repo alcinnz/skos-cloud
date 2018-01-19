@@ -7,15 +7,15 @@ properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
 function layoutVocab(vocab, callback, showChildless, title, font) {
   if (!title) title = "Vocabulary"
-  if (!font) font = {size: 50, minSize: 20, step: 10, style: "bold ? sans-serif"}
+  if (!font) font = {size: 40, minSize: 10, step: 10, style: "bold ? sans-serif"}
 
   var renderTree = {id: "", label: title, colour: "#ccc", subconcepts: []}
 
-  function buildRenderTree(concept) {
+  function buildRenderTree(concept, depth) {
     var layer = {id: concept.id, label: concept.label, subconcepts: []}
-    layer.colour = d3.hsl(Math.random()*360, 1, Math.random()*0.1).toString()
+    layer.colour = d3.hsl(Math.random()*360, 1, 0.1 - 0.03*depth).toString()
     for (var subconcept of concept.subconcepts)
-      layer.subconcepts.push(buildRenderTree(vocab[subconcept]))
+      layer.subconcepts.push(buildRenderTree(vocab[subconcept], depth + 1))
 
     return layer
   }
@@ -23,9 +23,21 @@ function layoutVocab(vocab, callback, showChildless, title, font) {
   for (var id in vocab) {
     if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
     var concept = concepts[id]
-    renderTree.subconcepts.push(buildRenderTree(concept))
+    renderTree.subconcepts.push(buildRenderTree(concept, 1))
   }
 
+  /* These "flatConcepts" can really clutter the visualization without
+        adding anything to it. */
+  var flatConcepts = [], newBranches = []
+  for (var branch of renderTree.subconcepts) {
+    if (!vocab.hasOwnProperty(id)) continue
+
+    if (branch.subconcepts.length > 0) newBranches.push(branch)
+    else flatConcepts.push(branch)
+  }
+  renderTree.subconcepts = newBranches
+
+  // No point having an artificial root, if we've got real one.
   if (renderTree.subconcepts.length == 1) renderTree = renderTree.subconcepts[0]
   renderTree.offset = 0 // Won't otherwise get one. 
 
@@ -203,7 +215,8 @@ function layoutVocab(vocab, callback, showChildless, title, font) {
     .then(() => positionWords(renderTree, true, 0, 0))
     .then(() => {
       var words = flattenRenderTree(renderTree, [])
-      setTimeout(callback, 0, words)
+      setTimeout(callback, 0, words, flatConcepts, {
+            width: renderTree.parallelSize, height: renderTree.perpendicularSize})
     }, 0)
   chain.trigger()
 }
