@@ -5,7 +5,9 @@ are unacceptably slow. */
 var concepts = {}
 var lang = "en"
 const RDFns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+const OWLns = "http://www.w3.org/2002/07/owl#"
 const SKOSns = "http://www.w3.org/2004/02/skos/core#"
+
 function parseVocab_(txt, callback, reject) {
   new N3.Parser().parse(txt, (err, triple, prefixes) => {
     if (err) alert(JSON.stringify(err))
@@ -32,6 +34,16 @@ function parseVocab_(txt, callback, reject) {
 
       concept.label = text
     }
+    if (triple.predicate == OWLns+"sameAs") {
+      if (!(triple.object in concepts))
+        concepts[triple.object] = {id: triple.object, subconcepts: [],
+                related: []}
+
+      var merged = concepts[triple.subject] = concepts[triple.object]
+      merged.subconcepts = merged.subconcepts.concat(concept.subconcepts)
+      merged.related = merged.related.concat(concept.related)
+    }
+
     if (triple.predicate == SKOSns+"narrower") {
       if (!(triple.object in concepts))
         concepts[triple.object] = {id: triple.object, subconcepts: [],
@@ -50,7 +62,7 @@ function parseVocab_(txt, callback, reject) {
             transitive: true, id: triple.subject})
     }
     if (triple.predicate == SKOSns+"broaderTransitive")
-      triple.subconcepts.push({transitive: true, id: triple.object})
+      concept.subconcepts.push({transitive: true, id: triple.object})
 
     if (triple.predicate == SKOSns+"related")
       concept.related.push(triple.object)
@@ -78,7 +90,7 @@ function _normalizeVocab(callback, reject) {
         continue
       }
       if (!("label" in concept))
-        reject("Cannot render vocabulary, unnamed concept!")
+        reject("Cannot render vocabulary, unnamed concept '" + id + "'!")
     }
 
     setTimeout(it2__apply_simple_parents, 0)

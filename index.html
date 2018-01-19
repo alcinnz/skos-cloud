@@ -11,7 +11,7 @@
 </head>
 <body>
   <script>
-    fetchVocab("agrovoc.ttl").then(vocabParsed)
+    fetchVocab("timescale-isc2014.ttl").then(vocabParsed)
 
     function vocabParsed(concepts) {
       document.querySelector('p').innerText = "Laying out vocabulary..."
