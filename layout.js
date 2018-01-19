@@ -5,9 +5,9 @@
     Outputs a JSON tree containing id, label, colour, scale, horizontal, x, & y
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
-function layoutVocab(vocab, callback, showChildless, title, font) {
+function layoutVocab(vocab, callback, title, font) {
   if (!title) title = "Vocabulary"
-  if (!font) font = {size: 40, minSize: 10, step: 10, style: "bold ? sans-serif"}
+  if (!font) font = {size: 25, minSize: 10, step: 5, style: "bold ? sans-serif"}
 
   var renderTree = {id: "", label: title, colour: "#ccc", subconcepts: []}
 
@@ -23,7 +23,7 @@ function layoutVocab(vocab, callback, showChildless, title, font) {
   for (var id in vocab) {
     if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
     var concept = concepts[id]
-    renderTree.subconcepts.push(buildRenderTree(concept, 1))
+    renderTree.subconcepts.push(buildRenderTree(concept, 0))
   }
 
   /* These "flatConcepts" can really clutter the visualization without
@@ -126,10 +126,12 @@ function layoutVocab(vocab, callback, showChildless, title, font) {
     }
     layer.topLength = topSize; layer.bottomLength = bottomSize
     parallelSize = Math.max(topSize, bottomSize)
+    parallelSize += 50 // Ensure padding makes it's way into the layout.
 
     // Third pass: Ensure text fits
     var textLength = getTextWidth(layer.label, font.style.replace("?", fontSize+"px"))
     layer.parallelSize = Math.max(textLength, parallelSize)
+    layer.parallelSize += 2 // Add space to move text slightly from it's parent
 
     // Compute perpendicular length
     topSize = bottomSize = 0
@@ -164,37 +166,51 @@ function layoutVocab(vocab, callback, showChildless, title, font) {
   }
 
   function positionWords(layer, horizontal, rootX, rootY) {
+    layer.width = layer.parallelSize
+    layer.height = layer.fontSize
+
     if (horizontal) {
       layer.x = rootX
       layer.y = rootY + layer.offset + layer.topSize
-      layer.width = layer.parallelSize
-      layer.height = layer.fontSize
 
-      for (var branch of layer.top)
+      for (var branch of layer.top) {
         positionWords(branch, !horizontal, rootX, rootY + layer.offset)
-      for (var branch of layer.bottom)
+        // Adjust positioning to not be so snuggled up against parent
+        branch.height -= 2
+      }
+      for (var branch of layer.bottom) {
         positionWords(branch, !horizontal, rootX, layer.y + layer.fontSize)
+
+        branch.height -= 2
+        branch.y += 2
+      }
     } else {
       layer.x = rootX + layer.offset + layer.topSize
       layer.y = rootY
-      layer.width = layer.fontSize
-      layer.height = layer.parallelSize
 
-      for (var branch of layer.top)
+      for (var branch of layer.top) {
         positionWords(branch, !horizontal, rootX + layer.offset, rootY)
-      for (var branch of layer.bottom)
+
+        branch.width -= 2
+      }
+      for (var branch of layer.bottom) {
         positionWords(branch, !horizontal, layer.x + layer.fontSize, rootY)
+
+        branch.width -= 2
+        branch.x += 2
+      }
     }
   }
 
   function verticalText(layer, horizontal) {
-    if (!horizontal) {
+    /*if (!horizontal) {
       var newLabel = ""
       for (var char of layer.label) newLabel += char + "\n"
       layer.label = newLabel
 
       layer.fontSize >>= 1
-    }
+    }*/
+    layer.horizontal = horizontal
 
     for (var branch of layer.branches) verticalText(branch, !horizontal)
   }
@@ -202,9 +218,10 @@ function layoutVocab(vocab, callback, showChildless, title, font) {
   function flattenRenderTree(l, words) {
     if (l.parallelSize == 0) return words // These are marked as too-small to render
 
-    words.push({id: l.id, label: l.label,
+    words.push({id: l.id, label: l.label, fontSize: l.fontSize,
         font: font.style.replace("?", l.fontSize + "px"), colour: l.colour,
-        x: l.x, y: l.y, width: l.width + "px", height: l.height + "px"})
+        x: l.x, y: l.y, width: l.width + "px", height: l.height + "px",
+        horizontal: l.horizontal})
     for (var branch of l.branches) flattenRenderTree(branch, words)
     return words
   }

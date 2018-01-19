@@ -3,6 +3,7 @@
     It only supports Turtle/N3 format, as other parsers for JavaScript
 are unacceptably slow. */
 var concepts = {}
+var vocabName = "Vocabulary" // Generic fallback
 var lang = "en"
 const RDFns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 const OWLns = "http://www.w3.org/2002/07/owl#"
@@ -66,6 +67,12 @@ function parseVocab_(txt, callback, reject) {
 
     if (triple.predicate == SKOSns+"related")
       concept.related.push(triple.object)
+
+    if (triple.predicate == SKOSns+"topConceptOf") {
+      var vocab = concepts[triple.object]
+      if (vocab && vocab.label)
+        vocabName = vocab.label // FIXME Sensitive to triple ordering
+    }
   })
 }
 function parseVocab(txt) {
@@ -183,6 +190,6 @@ function _normalizeVocab(callback, reject) {
       concept.related = deduplicate(concept.related)
     }
 
-    setTimeout(callback, 0, concepts)
+    setTimeout(callback, 0, {concepts, title: vocabName})
   }
 }

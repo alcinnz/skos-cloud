@@ -13,10 +13,10 @@
   <script>
     fetchVocab("timescale-isc2014.ttl").then(vocabParsed)
 
-    function vocabParsed(concepts) {
+    function vocabParsed(vocab) {
       document.querySelector('p').innerText = "Laying out vocabulary..."
 
-      layoutVocab(concepts, (words, flatConcepts, size) => {
+      layoutVocab(vocab.concepts, (words, flatConcepts, size) => {
         d3.select('div p').remove()
         renderVocab(words, d3.select('div'), size)
 
@@ -24,7 +24,7 @@
         conceptList.exit().remove()
         conceptList.enter().append('li').text((data) => data.label)
         conceptList.text((data) => data.label)
-      })
+      }, vocab.title)
     }
   </script>
   <div style="width: 1000px; height: 1000px;">

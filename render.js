@@ -9,8 +9,11 @@ function renderVocab(words, $canvas, size) {
   cloud.enter().append('a').merge(cloud)
     .text((word) => word.label)
     .style('font', (word) => word.font)
-    .style('background', (word) => word.colour)
-    .style('color', bgColour)
+    .style('color', (word) => word.colour)
+    .style('border-top', 'thin solid')
+    .style('transform', (word) =>
+        word.horizontal ? 'none' : 'rotate(90deg) translate(0, -' + word.fontSize + 'px)')
+    .style('transform-origin', 'left top 0')
     .style('text-align', 'center')
     .style('position', 'absolute')
     .style('left', (word) => word.x + "px")
