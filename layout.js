@@ -13,33 +13,38 @@ function layoutVocab(vocab, callback, title, font) {
 
   function buildRenderTree(concept, depth) {
     var layer = {id: concept.id, label: concept.label, subconcepts: []}
-    layer.colour = d3.hsl(Math.random()*360, 1, 0.1 - 0.03*depth).toString()
+    layer.colour = d3.hsl(Math.random()*360, 1, 0.2 - 0.06*depth).toString()
     for (var subconcept of concept.subconcepts)
       layer.subconcepts.push(buildRenderTree(vocab[subconcept], depth + 1))
 
     return layer
   }
 
-  for (var id in vocab) {
-    if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
-    var concept = concepts[id]
-    renderTree.subconcepts.push(buildRenderTree(concept, 0))
+  if ("label" in vocab) {
+    // The render tree was already passed in
+    renderTree = vocab
+  } else {
+    for (var id in vocab) {
+      if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
+      var concept = concepts[id]
+      renderTree.subconcepts.push(buildRenderTree(concept, 0))
+    }
+
+    /* These "flatConcepts" can really clutter the visualization without
+          adding anything to it. */
+    var flatConcepts = [], newBranches = []
+    for (var branch of renderTree.subconcepts) {
+      if (!vocab.hasOwnProperty(id)) continue
+
+      if (branch.subconcepts.length > 0) newBranches.push(branch)
+      else flatConcepts.push(branch)
+    }
+    renderTree.subconcepts = newBranches
+
+    // No point having an artificial root, if we've got real one.
+    if (renderTree.subconcepts.length == 1) renderTree = renderTree.subconcepts[0]
+    renderTree.offset = 0 // Won't otherwise get one.
   }
-
-  /* These "flatConcepts" can really clutter the visualization without
-        adding anything to it. */
-  var flatConcepts = [], newBranches = []
-  for (var branch of renderTree.subconcepts) {
-    if (!vocab.hasOwnProperty(id)) continue
-
-    if (branch.subconcepts.length > 0) newBranches.push(branch)
-    else flatConcepts.push(branch)
-  }
-  renderTree.subconcepts = newBranches
-
-  // No point having an artificial root, if we've got real one.
-  if (renderTree.subconcepts.length == 1) renderTree = renderTree.subconcepts[0]
-  renderTree.offset = 0 // Won't otherwise get one. 
 
   function capBranches(layer) {
     // Without this traversal, your computer might be overwhelmed by

@@ -8,17 +8,23 @@
   <script src="d3-hsv.js"></script>
   <script src="layout.js"></script>
   <script src="render.js"></script>
+
+  <style>
+    .skos-hover {border-top-color: #f00;}
+    .skos-related {border-top-color: #0f0;}
+    .skos-parent {border-top-color: #00f;}
+  </style>
 </head>
 <body>
   <script>
-    fetchVocab("timescale-isc2014.ttl").then(vocabParsed)
+    fetchVocab("odysseus.ttl").then(vocabParsed)
 
     function vocabParsed(vocab) {
       document.querySelector('p').innerText = "Laying out vocabulary..."
 
       layoutVocab(vocab.concepts, (words, flatConcepts, size) => {
         d3.select('div p').remove()
-        renderVocab(words, d3.select('div'), size)
+        renderVocab(words, d3.select('div'), size, vocab.concepts)
 
         var conceptList = d3.select('ul').selectAll('li').data(flatConcepts)
         conceptList.exit().remove()

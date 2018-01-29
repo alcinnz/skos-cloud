@@ -146,7 +146,9 @@ function _normalizeVocab(callback, reject) {
 
         if (subconcept.transitive) {
           concept.subconcepts[i] = subconcept.id
-          subconcept.parents = subconcept.parents + concept.parents
+          var subconceptObj = concepts[subconcept.id]
+          subconceptObj.parents = subconceptObj.parents.concat(concept.parents)
+
           subconcept = subconcept.id
         }
 
