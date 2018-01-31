@@ -23,10 +23,11 @@ function renderVocab(words, $canvas, size, vocab = {}) {
     .style('height', (word) => word.height)
     .style('line-height', 1) // Just what seems to work
     .style('white-space', 'pre')
-    .style('cursor', 'default')
+    .style('cursor', 'pointer')
 
-    .on('mouseover', function(evt) {
-      var my_id = d3.select(this).classed('skos-hover', true).attr('data-id')
+    .on('mouseover', function(data) {
+      var my_id = data.id
+      d3.selectAll('[data-id="'+my_id+'"]').classed('skos-hover', true)
       for (var id of vocab[my_id].parents) {
         d3.select('[data-id="'+id+'"]').classed('skos-parent', true)
       }
@@ -35,9 +36,20 @@ function renderVocab(words, $canvas, size, vocab = {}) {
         d3.select('[data-id="'+id+'"]').classed('skos-related', true)
       }
     })
-    .on('mouseout', (evt) => {
+    .on('mouseout', () => {
       d3.selectAll('.skos-hover').classed('skos-hover', false)
       d3.selectAll('.skos-parent').classed('skos-parent', false)
       d3.selectAll('.skos-related').classed('skos-related', false)
+    })
+    .on('click', (data) => {
+      layoutVocab(data.renderTree, (words, flatConcepts, size) => {
+        renderVocab(words, $canvas, size, vocab)
+
+        // TODO abstract away
+        var conceptList = d3.select('ul').selectAll('li').data(flatConcepts)
+        conceptList.exit().remove()
+        conceptList.enter().append('li').text((data) => data.label)
+        conceptList.text((data) => data.label)
+      }, vocab.title)
     })
 }

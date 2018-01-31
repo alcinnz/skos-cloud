@@ -9,13 +9,12 @@ function layoutVocab(vocab, callback, title, font) {
   if (!title) title = "Vocabulary"
   if (!font) font = {size: 25, minSize: 10, step: 5, style: "bold ? sans-serif"}
 
-  var renderTree = {id: "", label: title, colour: "#ccc", subconcepts: []}
+  var renderTree = {id: "", label: title, subconcepts: []}
 
-  function buildRenderTree(concept, depth) {
+  function buildRenderTree(concept) {
     var layer = {id: concept.id, label: concept.label, subconcepts: []}
-    layer.colour = d3.hsl(Math.random()*360, 1, 0.2 - 0.06*depth).toString()
     for (var subconcept of concept.subconcepts)
-      layer.subconcepts.push(buildRenderTree(vocab[subconcept], depth + 1))
+      layer.subconcepts.push(buildRenderTree(vocab[subconcept]))
 
     return layer
   }
@@ -27,24 +26,29 @@ function layoutVocab(vocab, callback, title, font) {
     for (var id in vocab) {
       if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
       var concept = concepts[id]
-      renderTree.subconcepts.push(buildRenderTree(concept, 0))
+      renderTree.subconcepts.push(buildRenderTree(concept))
     }
-
-    /* These "flatConcepts" can really clutter the visualization without
-          adding anything to it. */
-    var flatConcepts = [], newBranches = []
-    for (var branch of renderTree.subconcepts) {
-      if (!vocab.hasOwnProperty(id)) continue
-
-      if (branch.subconcepts.length > 0) newBranches.push(branch)
-      else flatConcepts.push(branch)
-    }
-    renderTree.subconcepts = newBranches
 
     // No point having an artificial root, if we've got real one.
     if (renderTree.subconcepts.length == 1) renderTree = renderTree.subconcepts[0]
     renderTree.offset = 0 // Won't otherwise get one.
   }
+
+  /* These "flatConcepts" can really clutter the visualization without
+        adding anything to it. */
+  var flatConcepts = renderTree.flatConcepts || [], newBranches = []
+  for (var branch of renderTree.subconcepts) {
+    if (branch.subconcepts.length > 0) newBranches.push(branch)
+    else flatConcepts.push(branch)
+  }
+  renderTree.subconcepts = newBranches
+  renderTree.flatConcepts = flatConcepts
+
+  function colorize(layer, depth) {
+    layer.colour = d3.hsl(Math.random()*360, 1, 0.2 - 0.06*depth).toString()
+    for (var branch of layer.subconcepts) colorize(branch, depth + 1)
+  }
+  colorize(renderTree, 0)
 
   function capBranches(layer) {
     // Without this traversal, your computer might be overwhelmed by
@@ -208,13 +212,6 @@ function layoutVocab(vocab, callback, title, font) {
   }
 
   function verticalText(layer, horizontal) {
-    /*if (!horizontal) {
-      var newLabel = ""
-      for (var char of layer.label) newLabel += char + "\n"
-      layer.label = newLabel
-
-      layer.fontSize >>= 1
-    }*/
     layer.horizontal = horizontal
 
     for (var branch of layer.branches) verticalText(branch, !horizontal)
@@ -226,7 +223,7 @@ function layoutVocab(vocab, callback, title, font) {
     words.push({id: l.id, label: l.label, fontSize: l.fontSize,
         font: font.style.replace("?", l.fontSize + "px"), colour: l.colour,
         x: l.x, y: l.y, width: l.width + "px", height: l.height + "px",
-        horizontal: l.horizontal})
+        horizontal: l.horizontal, renderTree: l})
     for (var branch of l.branches) flattenRenderTree(branch, words)
     return words
   }
@@ -234,6 +231,7 @@ function layoutVocab(vocab, callback, title, font) {
   var chain = new Deferred(() => estimateLayout(renderTree, font.size))
   chain.then(() => finalizeLayout(renderTree))
     .then(() => verticalText(renderTree, true))
+    .then(() => renderTree.offset = 0)
     .then(() => positionWords(renderTree, true, 0, 0))
     .then(() => {
       var words = flattenRenderTree(renderTree, [])
