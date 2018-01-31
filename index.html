@@ -16,20 +16,16 @@
   </style>
 </head>
 <body>
+  <p id="js-parents"></p>
   <script>
     fetchVocab("odysseus.ttl").then(vocabParsed)
 
     function vocabParsed(vocab) {
-      document.querySelector('p').innerText = "Laying out vocabulary..."
+      document.querySelector('div p').innerText = "Laying out vocabulary..."
 
-      layoutVocab(vocab.concepts, (words, flatConcepts, size) => {
-        d3.select('div p').remove()
-        renderVocab(words, d3.select('div'), size, vocab.concepts)
-
-        var conceptList = d3.select('ul').selectAll('li').data(flatConcepts)
-        conceptList.exit().remove()
-        conceptList.enter().append('li').text((data) => data.label)
-        conceptList.text((data) => data.label)
+      layoutVocab(vocab.concepts, (words, flatConcepts, size, rootID) => {
+        d3.selectAll('div p').remove()
+        renderVocab(words, d3.select('div'), size, vocab.concepts, flatConcepts, rootID)
       }, vocab.title)
     }
   </script>

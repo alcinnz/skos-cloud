@@ -5,7 +5,7 @@
     Outputs a JSON tree containing id, label, colour, scale, horizontal, x, & y
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
-function layoutVocab(vocab, callback, title, font) {
+function layoutVocab(vocab, callback, title, font, rootID) {
   if (!title) title = "Vocabulary"
   if (!font) font = {size: 25, minSize: 10, step: 5, style: "bold ? sans-serif"}
 
@@ -22,6 +22,9 @@ function layoutVocab(vocab, callback, title, font) {
   if ("label" in vocab) {
     // The render tree was already passed in
     renderTree = vocab
+    rootID = renderTree.id
+  } else if (rootID) {
+    renderTree = buildRenderTree(vocab[rootID])
   } else {
     for (var id in vocab) {
       if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
@@ -32,6 +35,8 @@ function layoutVocab(vocab, callback, title, font) {
     // No point having an artificial root, if we've got real one.
     if (renderTree.subconcepts.length == 1) renderTree = renderTree.subconcepts[0]
     renderTree.offset = 0 // Won't otherwise get one.
+
+    rootID = renderTree.id
   }
 
   /* These "flatConcepts" can really clutter the visualization without
@@ -236,7 +241,7 @@ function layoutVocab(vocab, callback, title, font) {
     .then(() => {
       var words = flattenRenderTree(renderTree, [])
       setTimeout(callback, 0, words, flatConcepts, {
-            width: renderTree.parallelSize, height: renderTree.perpendicularSize})
+            width: renderTree.parallelSize, height: renderTree.perpendicularSize}, rootID)
     }, 0)
   chain.trigger()
 }

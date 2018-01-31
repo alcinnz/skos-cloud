@@ -1,4 +1,4 @@
-function renderVocab(words, $canvas, size, vocab = {}) {
+function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, layerId) {
   var bgColour = '#fff'
   $canvas.style('position', 'relative')
         .style('width', size.width+'px').style('height', size.height+'px')
@@ -42,14 +42,39 @@ function renderVocab(words, $canvas, size, vocab = {}) {
       d3.selectAll('.skos-related').classed('skos-related', false)
     })
     .on('click', (data) => {
-      layoutVocab(data.renderTree, (words, flatConcepts, size) => {
-        renderVocab(words, $canvas, size, vocab)
-
-        // TODO abstract away
-        var conceptList = d3.select('ul').selectAll('li').data(flatConcepts)
-        conceptList.exit().remove()
-        conceptList.enter().append('li').text((data) => data.label)
-        conceptList.text((data) => data.label)
+      layoutVocab(data.renderTree, (words, flatConcepts, size, rootID) => {
+        renderVocab(words, $canvas, size, vocab, flatConcepts, rootID)
       }, vocab.title)
     })
+
+  // TODO Modularize this better. 
+  var conceptList = d3.select('ul').selectAll('li').data(flatConcepts)
+  conceptList.exit().remove()
+  conceptList.enter().append('li').text((data) => data.label)
+  conceptList.text((data) => data.label)
+
+  console.log(vocab[layerId].parents)
+  if (layerId && vocab[layerId].parents.length) {
+    var broader = vocab[layerId].parents
+    var $broader = d3.select('#js-parents').selectAll('a').data(broader)
+    $broader.exit().remove()
+    $broader.enter().append('a').merge($broader)
+      .text((data) => vocab[data].label)
+      .style('text-decoration', 'overline').style('cursor', 'pointer')
+      .style('padding', '5px')
+      .on('click', (data) => {
+        layoutVocab(vocab, (words, flatConcepts, size, rootID) => {
+          renderVocab(words, $canvas, size, vocab, flatConcepts, rootID)
+        }, vocab.title, undefined, data)
+      })
+  } else {
+    d3.selectAll('#js-parents *').remove()
+    d3.select('#js-parents').append('a').text('Full Repository')
+      .style('text-decoration', 'underline').style('cursor', 'pointer')
+      .on('click', (data) => {
+        layoutVocab(vocab, (words, flatConcepts, size) => {
+          renderVocab(words, $canvas, size, vocab, flatConcepts)
+        }, vocab.title)
+      })
+  }
 }
