@@ -2,20 +2,20 @@
                       "children": [
                         {
                           "children": [],
-                          "name": "Tithonian",
-                          "url": "/admin/skosxl/concept/185/"
+                          "name": "Kimmeridgian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Kimmeridgian"
                         },
                         {
                           "children": [],
                           "name": "Oxfordian",
-                          "url": "/admin/skosxl/concept/186/"
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Oxfordian"
                         },
                         {
                           "children": [],
-                          "name": "Kimmeridgian",
-                          "url": "/admin/skosxl/concept/187/"
+                          "name": "Tithonian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Tithonian"
                         }
                       ],
                       "name": "Late/Upper Jurassic",
-                      "url": "/admin/skosxl/concept/184/"
+                      "url": "http://resource.geosciml.org/classifier/ics/ischart/UpperJurassic"
                     }

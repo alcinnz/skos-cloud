@@ -23,13 +23,53 @@ function parseUrl(url, callback) {
   function completed() {
     console.log(rdf)
 
-    var concepts = []
+    var vocab = {}
     for (var subject in rdf) {
-      var label = rdf[subject][SKOSns+"prefLabel"][0]
-      concepts.push({children: [],
-              name: label.slice(1, -1),
-              url: subject})
+      var concept = rdf[subject]
+      // TODO filter out non-concepts
+
+      var children = []
+      var childSet = {}
+      for (var child of concept[SKOSns+"narrower"] || []) {
+        if (!(child in rdf) || child in childSet) continue
+        childSet[child] = true
+        children.push(child)
+      }
+
+      var simpleConcept = {children: children,
+              name: concept[SKOSns+"prefLabel"][0].slice(1, -1),
+              url: subject}
+      vocab[subject] = simpleConcept
     }
+
+    for (var subject in rdf) {
+      var concept = rdf[subject]
+      var parents = {}
+      for (var parent of concept[SKOSns+"broader"] || []) {
+        if (!(parent in rdf) || parent in parents) continue
+        parents[parent] = true
+
+        var parentConcept = vocab[parent]
+        if (parentConcept.children.indexOf(subject) == -1) parentConcept.children.push(subject)
+      }
+    }
+
+    var nonRoots = {}
+    for (var id in vocab) {
+      var concept = vocab[id]
+      for (var i = 0; i < concept.children.length; i++) {
+        var child = concept.children[i]
+        nonRoots[child] = true
+        concept.children[i] = vocab[child]
+      }
+    }
+
+    var concepts = []
+    for (var id in vocab) {
+      if (id in nonRoots) continue
+      concepts.push(vocab[id])
+    }
+
     if (concepts.length == 1) callback(concepts[0])
     else callback({children: concepts, name: "Vocabulary"})
   }

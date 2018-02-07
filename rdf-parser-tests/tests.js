@@ -5,6 +5,7 @@ QUnit.test( "canaries", function( assert ) {
 QUnit.test( "end 2 end", function( assert ) {
   end2endTest(0, assert)
   end2endTest(1, assert)
+  end2endTest(2, assert)
 })
 
 function end2endTest(name, assert) {

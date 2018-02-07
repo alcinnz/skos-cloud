@@ -137,6 +137,46 @@ isc:Callovian
   skos:prefLabel "å¡æ´›å¤«æœŸ"@zh ;
   foaf:isPrimaryTopicOf <http://sweet.jpl.nasa.gov/2.2/stateTimeGeologic.owl#Callovian> ;
 .
+isc:Bathonian
+  rdf:type gts:GeochronologicEra ;
+  rdf:type skos:Concept ;
+  gts:rank <http://resource.geosciml.org/ontology/timescale/rank/Age> ;
+  thors:begin isc:BaseBathonian ;
+  thors:end isc:BaseCallovian ;
+  rdfs:comment "older bound-167.7 +/-3.5"@en ;
+  rdfs:comment "younger bound-164.7 +/-4"@en ;
+  rdfs:label "Bathonian Age"@en ;
+  owl:sameAs <http://dbpedia.org/resource/Bathonian> ;
+  skos:broader isc:MiddleJurassic ;
+  skos:broaderTransitive isc:Jurassic ;
+  skos:broaderTransitive isc:Mesozoic ;
+  skos:broaderTransitive isc:MiddleJurassic ;
+  skos:broaderTransitive isc:Phanerozoic ;
+  skos:inScheme <http://resource.geosciml.org/classifier/ics/ischart/2014> ;
+  skos:notation "a1.1.2.2.2.2"^^gts:EraCode ;
+  skos:prefLabel "BarthoniÃ«n"@nl ;
+  skos:prefLabel "Bathon"@cs ;
+  skos:prefLabel "Bathon"@fi ;
+  skos:prefLabel "Bathon"@no ;
+  skos:prefLabel "Bathoni"@et ;
+  skos:prefLabel "Bathonian"@en ;
+  skos:prefLabel "Bathonien"@da ;
+  skos:prefLabel "Bathonien"@fr ;
+  skos:prefLabel "Bathoniense"@es ;
+  skos:prefLabel "Bathonium"@de ;
+  skos:prefLabel "Baton"@pl ;
+  skos:prefLabel "Batoniano"@pt ;
+  skos:prefLabel "Batonis"@lt ;
+  skos:prefLabel "bath"@hu ;
+  skos:prefLabel "bath"@sk ;
+  skos:prefLabel "bathon"@sv ;
+  skos:prefLabel "bathoniano"@it ;
+  skos:prefLabel "bathonij"@sl ;
+  skos:prefLabel "Ð‘Ð°Ñ‚"@bg ;
+  skos:prefLabel "ãƒã‚½ãƒ‹ã‚¢ãƒ³æœŸ"@ja ;
+  skos:prefLabel "å·´é€šæœŸ"@zh ;
+  foaf:isPrimaryTopicOf <http://sweet.jpl.nasa.gov/2.2/stateTimeGeologic.owl#Bathonian> ;
+.
 isc:Hettangian
   rdf:type gts:GeochronologicEra ;
   rdf:type skos:Concept ;

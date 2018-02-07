@@ -4,76 +4,76 @@
                       "children": [
                         {
                           "children": [],
-                          "name": "Tithonian",
-                          "url": "/admin/skosxl/concept/185/"
+                          "name": "Hettangian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Hettangian"
                         },
-                        {
-                          "children": [],
-                          "name": "Oxfordian",
-                          "url": "/admin/skosxl/concept/186/"
-                        },
-                        {
-                          "children": [],
-                          "name": "Kimmeridgian",
-                          "url": "/admin/skosxl/concept/187/"
-                        }
-                      ],
-                      "name": "Late/Upper Jurassic",
-                      "url": "/admin/skosxl/concept/184/"
-                    },
-                    {
-                      "children": [
                         {
                           "children": [],
                           "name": "Pliensbachian",
-                          "url": "/admin/skosxl/concept/182/"
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Pliensbachian"
                         },
                         {
                           "children": [],
                           "name": "Sinemurian",
-                          "url": "/admin/skosxl/concept/249/"
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Sinemurian"
                         },
                         {
                           "children": [],
                           "name": "Toarcian",
-                          "url": "/admin/skosxl/concept/250/"
-                        },
-                        {
-                          "children": [],
-                          "name": "Hettangian",
-                          "url": "/admin/skosxl/concept/251/"
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Toarcian"
                         }
                       ],
                       "name": "Early/Lower Jurassic",
-                      "url": "/admin/skosxl/concept/183/"
+                      "url": "http://resource.geosciml.org/classifier/ics/ischart/LowerJurassic"
                     },
                     {
                       "children": [
                         {
                           "children": [],
-                          "name": "Callovian",
-                          "url": "/admin/skosxl/concept/298/"
+                          "name": "Aalenian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Aalenian"
                         },
                         {
                           "children": [],
                           "name": "Bajocian",
-                          "url": "/admin/skosxl/concept/340/"
-                        },
-                        {
-                          "children": [],
-                          "name": "Aalenian",
-                          "url": "/admin/skosxl/concept/341/"
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Bajocian"
                         },
                         {
                           "children": [],
                           "name": "Bathonian",
-                          "url": "/admin/skosxl/concept/342/"
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Bathonian"
+                        },
+                        {
+                          "children": [],
+                          "name": "Callovian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Callovian"
                         }
                       ],
                       "name": "Middle Jurassic",
-                      "url": "/admin/skosxl/concept/299/"
+                      "url": "http://resource.geosciml.org/classifier/ics/ischart/MiddleJurassic"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "name": "Kimmeridgian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Kimmeridgian"
+                        },
+                        {
+                          "children": [],
+                          "name": "Oxfordian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Oxfordian"
+                        },
+                        {
+                          "children": [],
+                          "name": "Tithonian",
+                          "url": "http://resource.geosciml.org/classifier/ics/ischart/Tithonian"
+                        }
+                      ],
+                      "name": "Late/Upper Jurassic",
+                      "url": "http://resource.geosciml.org/classifier/ics/ischart/UpperJurassic"
                     }
                   ],
                   "name": "Jurassic",
-                  "url": "/admin/skosxl/concept/158/"
+                  "url": "http://resource.geosciml.org/classifier/ics/ischart/Jurassic"
                 }
