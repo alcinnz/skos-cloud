@@ -1,0 +1,2377 @@
+{
+"children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "name": "Gelasian",
+                  "url": "/admin/skosxl/concept/117/"
+                },
+                {
+                  "children": [],
+                  "name": "Pleistocene",
+                  "url": "/admin/skosxl/concept/118/"
+                },
+                {
+                  "children": [],
+                  "name": "Givetian",
+                  "url": "/admin/skosxl/concept/120/"
+                },
+                {
+                  "children": [],
+                  "name": "Middle Devonian",
+                  "url": "/admin/skosxl/concept/121/"
+                },
+                {
+                  "children": [],
+                  "name": "Paleocene",
+                  "url": "/admin/skosxl/concept/122/"
+                },
+                {
+                  "children": [],
+                  "name": "Selandian",
+                  "url": "/admin/skosxl/concept/123/"
+                },
+                {
+                  "children": [],
+                  "name": "Thanetian",
+                  "url": "/admin/skosxl/concept/124/"
+                },
+                {
+                  "children": [],
+                  "name": "Paleogene",
+                  "url": "/admin/skosxl/concept/125/"
+                },
+                {
+                  "children": [],
+                  "name": "Danian",
+                  "url": "/admin/skosxl/concept/126/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian Series 3",
+                  "url": "/admin/skosxl/concept/127/"
+                },
+                {
+                  "children": [],
+                  "name": "Drumian",
+                  "url": "/admin/skosxl/concept/128/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian",
+                  "url": "/admin/skosxl/concept/129/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian-Stage 5",
+                  "url": "/admin/skosxl/concept/130/"
+                },
+                {
+                  "children": [],
+                  "name": "Guzhangian",
+                  "url": "/admin/skosxl/concept/131/"
+                },
+                {
+                  "children": [],
+                  "name": "Statherian",
+                  "url": "/admin/skosxl/concept/133/"
+                },
+                {
+                  "children": [],
+                  "name": "Paleoproterozoic",
+                  "url": "/admin/skosxl/concept/134/"
+                },
+                {
+                  "children": [],
+                  "name": "Ludlow",
+                  "url": "/admin/skosxl/concept/135/"
+                },
+                {
+                  "children": [],
+                  "name": "Ludfordian",
+                  "url": "/admin/skosxl/concept/136/"
+                },
+                {
+                  "children": [],
+                  "name": "Gorstian",
+                  "url": "/admin/skosxl/concept/137/"
+                },
+                {
+                  "children": [],
+                  "name": "Silurian",
+                  "url": "/admin/skosxl/concept/138/"
+                },
+                {
+                  "children": [],
+                  "name": "Piacenzian",
+                  "url": "/admin/skosxl/concept/139/"
+                },
+                {
+                  "children": [],
+                  "name": "Pliocene",
+                  "url": "/admin/skosxl/concept/140/"
+                },
+                {
+                  "children": [],
+                  "name": "Norian",
+                  "url": "/admin/skosxl/concept/148/"
+                },
+                {
+                  "children": [],
+                  "name": "Late/Upper Triassic",
+                  "url": "/admin/skosxl/concept/149/"
+                },
+                {
+                  "children": [],
+                  "name": "Late/Upper Pennsylvanian",
+                  "url": "/admin/skosxl/concept/151/"
+                },
+                {
+                  "children": [],
+                  "name": "Pennsylvanian",
+                  "url": "/admin/skosxl/concept/152/"
+                },
+                {
+                  "children": [],
+                  "name": "Gzhelian",
+                  "url": "/admin/skosxl/concept/153/"
+                },
+                {
+                  "children": [],
+                  "name": "Kasimovian",
+                  "url": "/admin/skosxl/concept/154/"
+                },
+                {
+                  "children": [],
+                  "name": "Barremian",
+                  "url": "/admin/skosxl/concept/155/"
+                },
+                {
+                  "children": [],
+                  "name": "Lower Cretaceous",
+                  "url": "/admin/skosxl/concept/156/"
+                },
+                {
+                  "children": [],
+                  "name": "Mesozoic",
+                  "url": "/admin/skosxl/concept/157/"
+                },
+                {
+                  "children": [],
+                  "name": "Jurassic",
+                  "url": "/admin/skosxl/concept/158/"
+                },
+                {
+                  "children": [],
+                  "name": "Phanerozoic",
+                  "url": "/admin/skosxl/concept/159/"
+                },
+                {
+                  "children": [],
+                  "name": "Triassic",
+                  "url": "/admin/skosxl/concept/160/"
+                },
+                {
+                  "children": [],
+                  "name": "Cretaceous",
+                  "url": "/admin/skosxl/concept/161/"
+                },
+                {
+                  "children": [],
+                  "name": "Pragian",
+                  "url": "/admin/skosxl/concept/164/"
+                },
+                {
+                  "children": [],
+                  "name": "Early/Lower Devonian",
+                  "url": "/admin/skosxl/concept/165/"
+                },
+                {
+                  "children": [],
+                  "name": "Wordian",
+                  "url": "/admin/skosxl/concept/166/"
+                },
+                {
+                  "children": [],
+                  "name": "Guadalupian",
+                  "url": "/admin/skosxl/concept/167/"
+                },
+                {
+                  "children": [],
+                  "name": "Early/Lower Ordovician",
+                  "url": "/admin/skosxl/concept/171/"
+                },
+                {
+                  "children": [],
+                  "name": "Ordovician",
+                  "url": "/admin/skosxl/concept/172/"
+                },
+                {
+                  "children": [],
+                  "name": "Floian",
+                  "url": "/admin/skosxl/concept/173/"
+                },
+                {
+                  "children": [],
+                  "name": "Tremadocian",
+                  "url": "/admin/skosxl/concept/174/"
+                },
+                {
+                  "children": [],
+                  "name": "Anisian",
+                  "url": "/admin/skosxl/concept/175/"
+                },
+                {
+                  "children": [],
+                  "name": "Middle Triassic",
+                  "url": "/admin/skosxl/concept/176/"
+                },
+                {
+                  "children": [],
+                  "name": "Pliensbachian",
+                  "url": "/admin/skosxl/concept/182/"
+                },
+                {
+                  "children": [],
+                  "name": "Early/Lower Jurassic",
+                  "url": "/admin/skosxl/concept/183/"
+                },
+                {
+                  "children": [],
+                  "name": "Late/Upper Jurassic",
+                  "url": "/admin/skosxl/concept/184/"
+                },
+                {
+                  "children": [],
+                  "name": "Tithonian",
+                  "url": "/admin/skosxl/concept/185/"
+                },
+                {
+                  "children": [],
+                  "name": "Oxfordian",
+                  "url": "/admin/skosxl/concept/186/"
+                },
+                {
+                  "children": [],
+                  "name": "Kimmeridgian",
+                  "url": "/admin/skosxl/concept/187/"
+                },
+                {
+                  "children": [],
+                  "name": "Middle Pleistocene",
+                  "url": "/admin/skosxl/concept/190/"
+                },
+                {
+                  "children": [],
+                  "name": "Calabrian",
+                  "url": "/admin/skosxl/concept/191/"
+                },
+                {
+                  "children": [],
+                  "name": "Quaternary",
+                  "url": "/admin/skosxl/concept/192/"
+                },
+                {
+                  "children": [],
+                  "name": "Late/Upper Pleistocene",
+                  "url": "/admin/skosxl/concept/193/"
+                },
+                {
+                  "children": [],
+                  "name": "Wenlock",
+                  "url": "/admin/skosxl/concept/194/"
+                },
+                {
+                  "children": [],
+                  "name": "Sheinwoodian",
+                  "url": "/admin/skosxl/concept/195/"
+                },
+                {
+                  "children": [],
+                  "name": "Homerian",
+                  "url": "/admin/skosxl/concept/196/"
+                },
+                {
+                  "children": [],
+                  "name": "Paibian",
+                  "url": "/admin/skosxl/concept/198/"
+                },
+                {
+                  "children": [],
+                  "name": "Furongian",
+                  "url": "/admin/skosxl/concept/199/"
+                },
+                {
+                  "children": [],
+                  "name": "Wuchiapingian",
+                  "url": "/admin/skosxl/concept/201/"
+                },
+                {
+                  "children": [],
+                  "name": "Lopingian",
+                  "url": "/admin/skosxl/concept/202/"
+                },
+                {
+                  "children": [],
+                  "name": "Cenozoic",
+                  "url": "/admin/skosxl/concept/204/"
+                },
+                {
+                  "children": [],
+                  "name": "Neogene",
+                  "url": "/admin/skosxl/concept/205/"
+                },
+                {
+                  "children": [],
+                  "name": "Asselian",
+                  "url": "/admin/skosxl/concept/210/"
+                },
+                {
+                  "children": [],
+                  "name": "Cisuralian",
+                  "url": "/admin/skosxl/concept/211/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian Series 2",
+                  "url": "/admin/skosxl/concept/213/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian-Stage 3",
+                  "url": "/admin/skosxl/concept/214/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian-Stage 4",
+                  "url": "/admin/skosxl/concept/215/"
+                },
+                {
+                  "children": [],
+                  "name": "Pridoli",
+                  "url": "/admin/skosxl/concept/216/"
+                },
+                {
+                  "children": [],
+                  "name": "Campanian",
+                  "url": "/admin/skosxl/concept/217/"
+                },
+                {
+                  "children": [],
+                  "name": "Late/Upper Cretaceous",
+                  "url": "/admin/skosxl/concept/218/"
+                },
+                {
+                  "children": [],
+                  "name": "Proterozoic",
+                  "url": "/admin/skosxl/concept/219/"
+                },
+                {
+                  "children": [],
+                  "name": "Neoproterozoic",
+                  "url": "/admin/skosxl/concept/220/"
+                },
+                {
+                  "children": [],
+                  "name": "Mesoproterozoic",
+                  "url": "/admin/skosxl/concept/221/"
+                },
+                {
+                  "children": [],
+                  "name": "Precambrian",
+                  "url": "/admin/skosxl/concept/222/"
+                },
+                {
+                  "children": [],
+                  "name": "Llandovery",
+                  "url": "/admin/skosxl/concept/224/"
+                },
+                {
+                  "children": [],
+                  "name": "Rhuddanian",
+                  "url": "/admin/skosxl/concept/225/"
+                },
+                {
+                  "children": [],
+                  "name": "Telychian",
+                  "url": "/admin/skosxl/concept/226/"
+                },
+                {
+                  "children": [],
+                  "name": "Aeronian",
+                  "url": "/admin/skosxl/concept/227/"
+                },
+                {
+                  "children": [],
+                  "name": "Ypresian",
+                  "url": "/admin/skosxl/concept/230/"
+                },
+                {
+                  "children": [],
+                  "name": "Eocene",
+                  "url": "/admin/skosxl/concept/231/"
+                },
+                {
+                  "children": [],
+                  "name": "Bashkirian",
+                  "url": "/admin/skosxl/concept/232/"
+                },
+                {
+                  "children": [],
+                  "name": "Lower Pennsylvanian",
+                  "url": "/admin/skosxl/concept/233/"
+                },
+                {
+                  "children": [],
+                  "name": "Ectasian",
+                  "url": "/admin/skosxl/concept/234/"
+                },
+                {
+                  "children": [],
+                  "name": "Sakmarian",
+                  "url": "/admin/skosxl/concept/235/"
+                },
+                {
+                  "children": [],
+                  "name": "Carnian",
+                  "url": "/admin/skosxl/concept/237/"
+                },
+                {
+                  "children": [],
+                  "name": "Priabonian",
+                  "url": "/admin/skosxl/concept/240/"
+                },
+                {
+                  "children": [],
+                  "name": "Bartonian",
+                  "url": "/admin/skosxl/concept/241/"
+                },
+                {
+                  "children": [],
+                  "name": "Lutetian",
+                  "url": "/admin/skosxl/concept/242/"
+                },
+                {
+                  "children": [],
+                  "name": "Cenomanian",
+                  "url": "/admin/skosxl/concept/244/"
+                },
+                {
+                  "children": [],
+                  "name": "Turonian",
+                  "url": "/admin/skosxl/concept/245/"
+                },
+                {
+                  "children": [],
+                  "name": "Maastrichtian",
+                  "url": "/admin/skosxl/concept/246/"
+                },
+                {
+                  "children": [],
+                  "name": "Santonian",
+                  "url": "/admin/skosxl/concept/247/"
+                },
+                {
+                  "children": [],
+                  "name": "Coniacian",
+                  "url": "/admin/skosxl/concept/248/"
+                },
+                {
+                  "children": [],
+                  "name": "Sinemurian",
+                  "url": "/admin/skosxl/concept/249/"
+                },
+                {
+                  "children": [],
+                  "name": "Toarcian",
+                  "url": "/admin/skosxl/concept/250/"
+                },
+                {
+                  "children": [],
+                  "name": "Hettangian",
+                  "url": "/admin/skosxl/concept/251/"
+                },
+                {
+                  "children": [],
+                  "name": "Zanclean",
+                  "url": "/admin/skosxl/concept/256/"
+                },
+                {
+                  "children": [],
+                  "name": "Devonian",
+                  "url": "/admin/skosxl/concept/257/"
+                },
+                {
+                  "children": [],
+                  "name": "Eifelian",
+                  "url": "/admin/skosxl/concept/258/"
+                },
+                {
+                  "children": [],
+                  "name": "Valanginian",
+                  "url": "/admin/skosxl/concept/261/"
+                },
+                {
+                  "children": [],
+                  "name": "Aptian",
+                  "url": "/admin/skosxl/concept/262/"
+                },
+                {
+                  "children": [],
+                  "name": "Hauterivian",
+                  "url": "/admin/skosxl/concept/263/"
+                },
+                {
+                  "children": [],
+                  "name": "Albian",
+                  "url": "/admin/skosxl/concept/264/"
+                },
+                {
+                  "children": [],
+                  "name": "Berriasian",
+                  "url": "/admin/skosxl/concept/265/"
+                },
+                {
+                  "children": [],
+                  "name": "Late/Upper Devonian",
+                  "url": "/admin/skosxl/concept/267/"
+                },
+                {
+                  "children": [],
+                  "name": "Famennian",
+                  "url": "/admin/skosxl/concept/268/"
+                },
+                {
+                  "children": [],
+                  "name": "Frasnian",
+                  "url": "/admin/skosxl/concept/269/"
+                },
+                {
+                  "children": [],
+                  "name": "Sandbian",
+                  "url": "/admin/skosxl/concept/270/"
+                },
+                {
+                  "children": [],
+                  "name": "Late/Upper Ordovician",
+                  "url": "/admin/skosxl/concept/271/"
+                },
+                {
+                  "children": [],
+                  "name": "Mississippian",
+                  "url": "/admin/skosxl/concept/272/"
+                },
+                {
+                  "children": [],
+                  "name": "Upper Mississippian",
+                  "url": "/admin/skosxl/concept/273/"
+                },
+                {
+                  "children": [],
+                  "name": "Lower Mississippian",
+                  "url": "/admin/skosxl/concept/274/"
+                },
+                {
+                  "children": [],
+                  "name": "Carboniferous",
+                  "url": "/admin/skosxl/concept/275/"
+                },
+                {
+                  "children": [],
+                  "name": "Middle Mississippian",
+                  "url": "/admin/skosxl/concept/276/"
+                },
+                {
+                  "children": [],
+                  "name": "Paleozoic",
+                  "url": "/admin/skosxl/concept/282/"
+                },
+                {
+                  "children": [],
+                  "name": "Permian",
+                  "url": "/admin/skosxl/concept/283/"
+                },
+                {
+                  "children": [],
+                  "name": "Early/Lower Triassic",
+                  "url": "/admin/skosxl/concept/284/"
+                },
+                {
+                  "children": [],
+                  "name": "Mesoarchean",
+                  "url": "/admin/skosxl/concept/289/"
+                },
+                {
+                  "children": [],
+                  "name": "Archean",
+                  "url": "/admin/skosxl/concept/290/"
+                },
+                {
+                  "children": [],
+                  "name": "Terreneuvian",
+                  "url": "/admin/skosxl/concept/295/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian-Stage 2",
+                  "url": "/admin/skosxl/concept/296/"
+                },
+                {
+                  "children": [],
+                  "name": "Fortunian",
+                  "url": "/admin/skosxl/concept/297/"
+                },
+                {
+                  "children": [],
+                  "name": "Callovian",
+                  "url": "/admin/skosxl/concept/298/"
+                },
+                {
+                  "children": [],
+                  "name": "Middle Jurassic",
+                  "url": "/admin/skosxl/concept/299/"
+                },
+                {
+                  "children": [],
+                  "name": "Moscovian",
+                  "url": "/admin/skosxl/concept/303/"
+                },
+                {
+                  "children": [],
+                  "name": "Middle Pennsylvanian",
+                  "url": "/admin/skosxl/concept/304/"
+                },
+                {
+                  "children": [],
+                  "name": "Visean",
+                  "url": "/admin/skosxl/concept/310/"
+                },
+                {
+                  "children": [],
+                  "name": "Hirnantian",
+                  "url": "/admin/skosxl/concept/314/"
+                },
+                {
+                  "children": [],
+                  "name": "Katian",
+                  "url": "/admin/skosxl/concept/315/"
+                },
+                {
+                  "children": [],
+                  "name": "Stenian",
+                  "url": "/admin/skosxl/concept/318/"
+                },
+                {
+                  "children": [],
+                  "name": "Calymmian",
+                  "url": "/admin/skosxl/concept/319/"
+                },
+                {
+                  "children": [],
+                  "name": "Rhyacian",
+                  "url": "/admin/skosxl/concept/320/"
+                },
+                {
+                  "children": [],
+                  "name": "Kungurian",
+                  "url": "/admin/skosxl/concept/321/"
+                },
+                {
+                  "children": [],
+                  "name": "Artinskian",
+                  "url": "/admin/skosxl/concept/322/"
+                },
+                {
+                  "children": [],
+                  "name": "Serravallian",
+                  "url": "/admin/skosxl/concept/324/"
+                },
+                {
+                  "children": [],
+                  "name": "Miocene",
+                  "url": "/admin/skosxl/concept/325/"
+                },
+                {
+                  "children": [],
+                  "name": "Eoarchean",
+                  "url": "/admin/skosxl/concept/328/"
+                },
+                {
+                  "children": [],
+                  "name": "Holocene",
+                  "url": "/admin/skosxl/concept/329/"
+                },
+                {
+                  "children": [],
+                  "name": "Rupelian",
+                  "url": "/admin/skosxl/concept/330/"
+                },
+                {
+                  "children": [],
+                  "name": "Oligocene",
+                  "url": "/admin/skosxl/concept/331/"
+                },
+                {
+                  "children": [],
+                  "name": "Lochkovian",
+                  "url": "/admin/skosxl/concept/333/"
+                },
+                {
+                  "children": [],
+                  "name": "Emsian",
+                  "url": "/admin/skosxl/concept/334/"
+                },
+                {
+                  "children": [],
+                  "name": "Tortonian",
+                  "url": "/admin/skosxl/concept/335/"
+                },
+                {
+                  "children": [],
+                  "name": "Middle Ordovician",
+                  "url": "/admin/skosxl/concept/338/"
+                },
+                {
+                  "children": [],
+                  "name": "Orosirian",
+                  "url": "/admin/skosxl/concept/339/"
+                },
+                {
+                  "children": [],
+                  "name": "Bajocian",
+                  "url": "/admin/skosxl/concept/340/"
+                },
+                {
+                  "children": [],
+                  "name": "Aalenian",
+                  "url": "/admin/skosxl/concept/341/"
+                },
+                {
+                  "children": [],
+                  "name": "Bathonian",
+                  "url": "/admin/skosxl/concept/342/"
+                },
+                {
+                  "children": [],
+                  "name": "Neoarchean",
+                  "url": "/admin/skosxl/concept/343/"
+                },
+                {
+                  "children": [],
+                  "name": "Paleoarchean",
+                  "url": "/admin/skosxl/concept/344/"
+                },
+                {
+                  "children": [],
+                  "name": "Chattian",
+                  "url": "/admin/skosxl/concept/346/"
+                },
+                {
+                  "children": [],
+                  "name": "Langhian",
+                  "url": "/admin/skosxl/concept/349/"
+                },
+                {
+                  "children": [],
+                  "name": "Ladinian",
+                  "url": "/admin/skosxl/concept/351/"
+                },
+                {
+                  "children": [],
+                  "name": "Olenekian",
+                  "url": "/admin/skosxl/concept/355/"
+                },
+                {
+                  "children": [],
+                  "name": "Burdigalian",
+                  "url": "/admin/skosxl/concept/357/"
+                },
+                {
+                  "children": [],
+                  "name": "Capitanian",
+                  "url": "/admin/skosxl/concept/359/"
+                },
+                {
+                  "children": [],
+                  "name": "Roadian",
+                  "url": "/admin/skosxl/concept/360/"
+                },
+                {
+                  "children": [],
+                  "name": "Tournaisian",
+                  "url": "/admin/skosxl/concept/362/"
+                },
+                {
+                  "children": [],
+                  "name": "Induan",
+                  "url": "/admin/skosxl/concept/364/"
+                },
+                {
+                  "children": [],
+                  "name": "Cryogenian",
+                  "url": "/admin/skosxl/concept/367/"
+                },
+                {
+                  "children": [],
+                  "name": "Darriwilian",
+                  "url": "/admin/skosxl/concept/373/"
+                },
+                {
+                  "children": [],
+                  "name": "Dapingian",
+                  "url": "/admin/skosxl/concept/374/"
+                },
+                {
+                  "children": [],
+                  "name": "Siderian",
+                  "url": "/admin/skosxl/concept/380/"
+                },
+                {
+                  "children": [],
+                  "name": "Rhaetian",
+                  "url": "/admin/skosxl/concept/382/"
+                },
+                {
+                  "children": [],
+                  "name": "Serpukhovian",
+                  "url": "/admin/skosxl/concept/383/"
+                },
+                {
+                  "children": [],
+                  "name": "Cambrian-Stage 10",
+                  "url": "/admin/skosxl/concept/385/"
+                },
+                {
+                  "children": [],
+                  "name": "Hadean",
+                  "url": "/admin/skosxl/concept/386/"
+                },
+                {
+                  "children": [],
+                  "name": "Changhsingian",
+                  "url": "/admin/skosxl/concept/391/"
+                },
+                {
+                  "children": [],
+                  "name": "Jiangshanian",
+                  "url": "/admin/skosxl/concept/395/"
+                },
+                {
+                  "children": [],
+                  "name": "Tonian",
+                  "url": "/admin/skosxl/concept/401/"
+                },
+                {
+                  "children": [],
+                  "name": "Ediacaran",
+                  "url": "/admin/skosxl/concept/402/"
+                },
+                {
+                  "children": [],
+                  "name": "Aquitanian",
+                  "url": "/admin/skosxl/concept/411/"
+                },
+                {
+                  "children": [],
+                  "name": "Messinian",
+                  "url": "/admin/skosxl/concept/412/"
+                }
+              ],
+              "name": "Eras (all ranks) in the International Chronostratigraphic Chart",
+              "url": "/admin/skosxl/collection/76/"
+            },
+            {
+              "children": [],
+              "name": "Gelasian",
+              "url": "/admin/skosxl/concept/117/"
+            },
+            {
+              "children": [],
+              "name": "Pleistocene",
+              "url": "/admin/skosxl/concept/118/"
+            },
+            {
+              "children": [],
+              "name": "Base of Stenian",
+              "url": "/admin/skosxl/concept/119/"
+            },
+            {
+              "children": [],
+              "name": "Givetian",
+              "url": "/admin/skosxl/concept/120/"
+            },
+            {
+              "children": [],
+              "name": "Middle Devonian",
+              "url": "/admin/skosxl/concept/121/"
+            },
+            {
+              "children": [],
+              "name": "Paleocene",
+              "url": "/admin/skosxl/concept/122/"
+            },
+            {
+              "children": [],
+              "name": "Selandian",
+              "url": "/admin/skosxl/concept/123/"
+            },
+            {
+              "children": [],
+              "name": "Thanetian",
+              "url": "/admin/skosxl/concept/124/"
+            },
+            {
+              "children": [],
+              "name": "Paleogene",
+              "url": "/admin/skosxl/concept/125/"
+            },
+            {
+              "children": [],
+              "name": "Danian",
+              "url": "/admin/skosxl/concept/126/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian Series 3",
+              "url": "/admin/skosxl/concept/127/"
+            },
+            {
+              "children": [],
+              "name": "Drumian",
+              "url": "/admin/skosxl/concept/128/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian",
+              "url": "/admin/skosxl/concept/129/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian-Stage 5",
+              "url": "/admin/skosxl/concept/130/"
+            },
+            {
+              "children": [],
+              "name": "Guzhangian",
+              "url": "/admin/skosxl/concept/131/"
+            },
+            {
+              "children": [],
+              "name": "Base of Givetian",
+              "url": "/admin/skosxl/concept/132/"
+            },
+            {
+              "children": [],
+              "name": "Statherian",
+              "url": "/admin/skosxl/concept/133/"
+            },
+            {
+              "children": [],
+              "name": "Paleoproterozoic",
+              "url": "/admin/skosxl/concept/134/"
+            },
+            {
+              "children": [],
+              "name": "Ludlow",
+              "url": "/admin/skosxl/concept/135/"
+            },
+            {
+              "children": [],
+              "name": "Ludfordian",
+              "url": "/admin/skosxl/concept/136/"
+            },
+            {
+              "children": [],
+              "name": "Gorstian",
+              "url": "/admin/skosxl/concept/137/"
+            },
+            {
+              "children": [],
+              "name": "Silurian",
+              "url": "/admin/skosxl/concept/138/"
+            },
+            {
+              "children": [],
+              "name": "Piacenzian",
+              "url": "/admin/skosxl/concept/139/"
+            },
+            {
+              "children": [],
+              "name": "Pliocene",
+              "url": "/admin/skosxl/concept/140/"
+            },
+            {
+              "children": [],
+              "name": "Base of Bashkirian",
+              "url": "/admin/skosxl/concept/141/"
+            },
+            {
+              "children": [],
+              "name": "Base of Guadalupian",
+              "url": "/admin/skosxl/concept/142/"
+            },
+            {
+              "children": [],
+              "name": "Base of Middle Devonian",
+              "url": "/admin/skosxl/concept/144/"
+            },
+            {
+              "children": [],
+              "name": "Base of Kimmeridgian",
+              "url": "/admin/skosxl/concept/145/"
+            },
+            {
+              "children": [],
+              "name": "Base of Serravallian",
+              "url": "/admin/skosxl/concept/146/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cambrian Stage 2",
+              "url": "/admin/skosxl/concept/147/"
+            },
+            {
+              "children": [],
+              "name": "Norian",
+              "url": "/admin/skosxl/concept/148/"
+            },
+            {
+              "children": [],
+              "name": "Late/Upper Triassic",
+              "url": "/admin/skosxl/concept/149/"
+            },
+            {
+              "children": [],
+              "name": "Base of Aeronian",
+              "url": "/admin/skosxl/concept/150/"
+            },
+            {
+              "children": [],
+              "name": "Late/Upper Pennsylvanian",
+              "url": "/admin/skosxl/concept/151/"
+            },
+            {
+              "children": [],
+              "name": "Pennsylvanian",
+              "url": "/admin/skosxl/concept/152/"
+            },
+            {
+              "children": [],
+              "name": "Gzhelian",
+              "url": "/admin/skosxl/concept/153/"
+            },
+            {
+              "children": [],
+              "name": "Kasimovian",
+              "url": "/admin/skosxl/concept/154/"
+            },
+            {
+              "children": [],
+              "name": "Barremian",
+              "url": "/admin/skosxl/concept/155/"
+            },
+            {
+              "children": [],
+              "name": "Lower Cretaceous",
+              "url": "/admin/skosxl/concept/156/"
+            },
+            {
+              "children": [],
+              "name": "Mesozoic",
+              "url": "/admin/skosxl/concept/157/"
+            },
+            {
+              "children": [],
+              "name": "Jurassic",
+              "url": "/admin/skosxl/concept/158/"
+            },
+            {
+              "children": [],
+              "name": "Phanerozoic",
+              "url": "/admin/skosxl/concept/159/"
+            },
+            {
+              "children": [],
+              "name": "Triassic",
+              "url": "/admin/skosxl/concept/160/"
+            },
+            {
+              "children": [],
+              "name": "Cretaceous",
+              "url": "/admin/skosxl/concept/161/"
+            },
+            {
+              "children": [],
+              "name": "Base of Albian",
+              "url": "/admin/skosxl/concept/162/"
+            },
+            {
+              "children": [],
+              "name": "Base of Wordian",
+              "url": "/admin/skosxl/concept/163/"
+            },
+            {
+              "children": [],
+              "name": "Pragian",
+              "url": "/admin/skosxl/concept/164/"
+            },
+            {
+              "children": [],
+              "name": "Early/Lower Devonian",
+              "url": "/admin/skosxl/concept/165/"
+            },
+            {
+              "children": [],
+              "name": "Wordian",
+              "url": "/admin/skosxl/concept/166/"
+            },
+            {
+              "children": [],
+              "name": "Guadalupian",
+              "url": "/admin/skosxl/concept/167/"
+            },
+            {
+              "children": [],
+              "name": "Base of Bajocian",
+              "url": "/admin/skosxl/concept/168/"
+            },
+            {
+              "children": [],
+              "name": "Base of Gzhelian",
+              "url": "/admin/skosxl/concept/169/"
+            },
+            {
+              "children": [],
+              "name": "Base of Famennian",
+              "url": "/admin/skosxl/concept/170/"
+            },
+            {
+              "children": [],
+              "name": "Early/Lower Ordovician",
+              "url": "/admin/skosxl/concept/171/"
+            },
+            {
+              "children": [],
+              "name": "Ordovician",
+              "url": "/admin/skosxl/concept/172/"
+            },
+            {
+              "children": [],
+              "name": "Floian",
+              "url": "/admin/skosxl/concept/173/"
+            },
+            {
+              "children": [],
+              "name": "Tremadocian",
+              "url": "/admin/skosxl/concept/174/"
+            },
+            {
+              "children": [],
+              "name": "Anisian",
+              "url": "/admin/skosxl/concept/175/"
+            },
+            {
+              "children": [],
+              "name": "Middle Triassic",
+              "url": "/admin/skosxl/concept/176/"
+            },
+            {
+              "children": [],
+              "name": "Base of Burdigalian",
+              "url": "/admin/skosxl/concept/177/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cambrian Series 2",
+              "url": "/admin/skosxl/concept/178/"
+            },
+            {
+              "children": [],
+              "name": "Base of Kungurian",
+              "url": "/admin/skosxl/concept/179/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Devonian",
+              "url": "/admin/skosxl/concept/180/"
+            },
+            {
+              "children": [],
+              "name": "Base of Drumian",
+              "url": "/admin/skosxl/concept/181/"
+            },
+            {
+              "children": [],
+              "name": "Pliensbachian",
+              "url": "/admin/skosxl/concept/182/"
+            },
+            {
+              "children": [],
+              "name": "Early/Lower Jurassic",
+              "url": "/admin/skosxl/concept/183/"
+            },
+            {
+              "children": [],
+              "name": "Late/Upper Jurassic",
+              "url": "/admin/skosxl/concept/184/"
+            },
+            {
+              "children": [],
+              "name": "Tithonian",
+              "url": "/admin/skosxl/concept/185/"
+            },
+            {
+              "children": [],
+              "name": "Oxfordian",
+              "url": "/admin/skosxl/concept/186/"
+            },
+            {
+              "children": [],
+              "name": "Kimmeridgian",
+              "url": "/admin/skosxl/concept/187/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Jurassic",
+              "url": "/admin/skosxl/concept/188/"
+            },
+            {
+              "children": [],
+              "name": "Base of Callovian",
+              "url": "/admin/skosxl/concept/189/"
+            },
+            {
+              "children": [],
+              "name": "Middle Pleistocene",
+              "url": "/admin/skosxl/concept/190/"
+            },
+            {
+              "children": [],
+              "name": "Calabrian",
+              "url": "/admin/skosxl/concept/191/"
+            },
+            {
+              "children": [],
+              "name": "Quaternary",
+              "url": "/admin/skosxl/concept/192/"
+            },
+            {
+              "children": [],
+              "name": "Late/Upper Pleistocene",
+              "url": "/admin/skosxl/concept/193/"
+            },
+            {
+              "children": [],
+              "name": "Wenlock",
+              "url": "/admin/skosxl/concept/194/"
+            },
+            {
+              "children": [],
+              "name": "Sheinwoodian",
+              "url": "/admin/skosxl/concept/195/"
+            },
+            {
+              "children": [],
+              "name": "Homerian",
+              "url": "/admin/skosxl/concept/196/"
+            },
+            {
+              "children": [],
+              "name": "Base of Pliensbachian",
+              "url": "/admin/skosxl/concept/197/"
+            },
+            {
+              "children": [],
+              "name": "Paibian",
+              "url": "/admin/skosxl/concept/198/"
+            },
+            {
+              "children": [],
+              "name": "Furongian",
+              "url": "/admin/skosxl/concept/199/"
+            },
+            {
+              "children": [],
+              "name": "Base of Archean",
+              "url": "/admin/skosxl/concept/200/"
+            },
+            {
+              "children": [],
+              "name": "Wuchiapingian",
+              "url": "/admin/skosxl/concept/201/"
+            },
+            {
+              "children": [],
+              "name": "Lopingian",
+              "url": "/admin/skosxl/concept/202/"
+            },
+            {
+              "children": [],
+              "name": "Cenozoic",
+              "url": "/admin/skosxl/concept/204/"
+            },
+            {
+              "children": [],
+              "name": "Neogene",
+              "url": "/admin/skosxl/concept/205/"
+            },
+            {
+              "children": [],
+              "name": "Base of Neoarchean",
+              "url": "/admin/skosxl/concept/206/"
+            },
+            {
+              "children": [],
+              "name": "Base of Mesoproterozoic",
+              "url": "/admin/skosxl/concept/207/"
+            },
+            {
+              "children": [],
+              "name": "Base of Permian",
+              "url": "/admin/skosxl/concept/208/"
+            },
+            {
+              "children": [],
+              "name": "Asselian",
+              "url": "/admin/skosxl/concept/210/"
+            },
+            {
+              "children": [],
+              "name": "Cisuralian",
+              "url": "/admin/skosxl/concept/211/"
+            },
+            {
+              "children": [],
+              "name": "Base of Middle Pleistocene",
+              "url": "/admin/skosxl/concept/212/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian Series 2",
+              "url": "/admin/skosxl/concept/213/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian-Stage 3",
+              "url": "/admin/skosxl/concept/214/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian-Stage 4",
+              "url": "/admin/skosxl/concept/215/"
+            },
+            {
+              "children": [],
+              "name": "Pridoli",
+              "url": "/admin/skosxl/concept/216/"
+            },
+            {
+              "children": [],
+              "name": "Campanian",
+              "url": "/admin/skosxl/concept/217/"
+            },
+            {
+              "children": [],
+              "name": "Late/Upper Cretaceous",
+              "url": "/admin/skosxl/concept/218/"
+            },
+            {
+              "children": [],
+              "name": "Proterozoic",
+              "url": "/admin/skosxl/concept/219/"
+            },
+            {
+              "children": [],
+              "name": "Neoproterozoic",
+              "url": "/admin/skosxl/concept/220/"
+            },
+            {
+              "children": [],
+              "name": "Mesoproterozoic",
+              "url": "/admin/skosxl/concept/221/"
+            },
+            {
+              "children": [],
+              "name": "Precambrian",
+              "url": "/admin/skosxl/concept/222/"
+            },
+            {
+              "children": [],
+              "name": "Formation of the earth",
+              "url": "/admin/skosxl/concept/223/"
+            },
+            {
+              "children": [],
+              "name": "Llandovery",
+              "url": "/admin/skosxl/concept/224/"
+            },
+            {
+              "children": [],
+              "name": "Rhuddanian",
+              "url": "/admin/skosxl/concept/225/"
+            },
+            {
+              "children": [],
+              "name": "Telychian",
+              "url": "/admin/skosxl/concept/226/"
+            },
+            {
+              "children": [],
+              "name": "Aeronian",
+              "url": "/admin/skosxl/concept/227/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Cretaceous",
+              "url": "/admin/skosxl/concept/228/"
+            },
+            {
+              "children": [],
+              "name": "Base of Langhian",
+              "url": "/admin/skosxl/concept/229/"
+            },
+            {
+              "children": [],
+              "name": "Ypresian",
+              "url": "/admin/skosxl/concept/230/"
+            },
+            {
+              "children": [],
+              "name": "Eocene",
+              "url": "/admin/skosxl/concept/231/"
+            },
+            {
+              "children": [],
+              "name": "Bashkirian",
+              "url": "/admin/skosxl/concept/232/"
+            },
+            {
+              "children": [],
+              "name": "Lower Pennsylvanian",
+              "url": "/admin/skosxl/concept/233/"
+            },
+            {
+              "children": [],
+              "name": "Ectasian",
+              "url": "/admin/skosxl/concept/234/"
+            },
+            {
+              "children": [],
+              "name": "Sakmarian",
+              "url": "/admin/skosxl/concept/235/"
+            },
+            {
+              "children": [],
+              "name": "Base of Sinemurian",
+              "url": "/admin/skosxl/concept/236/"
+            },
+            {
+              "children": [],
+              "name": "Carnian",
+              "url": "/admin/skosxl/concept/237/"
+            },
+            {
+              "children": [],
+              "name": "Base of Jurassic",
+              "url": "/admin/skosxl/concept/238/"
+            },
+            {
+              "children": [],
+              "name": "Base of Hirnantian",
+              "url": "/admin/skosxl/concept/239/"
+            },
+            {
+              "children": [],
+              "name": "Priabonian",
+              "url": "/admin/skosxl/concept/240/"
+            },
+            {
+              "children": [],
+              "name": "Bartonian",
+              "url": "/admin/skosxl/concept/241/"
+            },
+            {
+              "children": [],
+              "name": "Lutetian",
+              "url": "/admin/skosxl/concept/242/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cambrian Stage 4",
+              "url": "/admin/skosxl/concept/243/"
+            },
+            {
+              "children": [],
+              "name": "Cenomanian",
+              "url": "/admin/skosxl/concept/244/"
+            },
+            {
+              "children": [],
+              "name": "Turonian",
+              "url": "/admin/skosxl/concept/245/"
+            },
+            {
+              "children": [],
+              "name": "Maastrichtian",
+              "url": "/admin/skosxl/concept/246/"
+            },
+            {
+              "children": [],
+              "name": "Santonian",
+              "url": "/admin/skosxl/concept/247/"
+            },
+            {
+              "children": [],
+              "name": "Coniacian",
+              "url": "/admin/skosxl/concept/248/"
+            },
+            {
+              "children": [],
+              "name": "Sinemurian",
+              "url": "/admin/skosxl/concept/249/"
+            },
+            {
+              "children": [],
+              "name": "Toarcian",
+              "url": "/admin/skosxl/concept/250/"
+            },
+            {
+              "children": [],
+              "name": "Hettangian",
+              "url": "/admin/skosxl/concept/251/"
+            },
+            {
+              "children": [],
+              "name": "Base of Aptian",
+              "url": "/admin/skosxl/concept/252/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cretaceous",
+              "url": "/admin/skosxl/concept/253/"
+            },
+            {
+              "children": [],
+              "name": "Base of Paleoarchean",
+              "url": "/admin/skosxl/concept/254/"
+            },
+            {
+              "children": [],
+              "name": "Base of Silurian",
+              "url": "/admin/skosxl/concept/255/"
+            },
+            {
+              "children": [],
+              "name": "Zanclean",
+              "url": "/admin/skosxl/concept/256/"
+            },
+            {
+              "children": [],
+              "name": "Devonian",
+              "url": "/admin/skosxl/concept/257/"
+            },
+            {
+              "children": [],
+              "name": "Eifelian",
+              "url": "/admin/skosxl/concept/258/"
+            },
+            {
+              "children": [],
+              "name": "Base of Carboniferous",
+              "url": "/admin/skosxl/concept/259/"
+            },
+            {
+              "children": [],
+              "name": "Base of Toarcian",
+              "url": "/admin/skosxl/concept/260/"
+            },
+            {
+              "children": [],
+              "name": "Valanginian",
+              "url": "/admin/skosxl/concept/261/"
+            },
+            {
+              "children": [],
+              "name": "Aptian",
+              "url": "/admin/skosxl/concept/262/"
+            },
+            {
+              "children": [],
+              "name": "Hauterivian",
+              "url": "/admin/skosxl/concept/263/"
+            },
+            {
+              "children": [],
+              "name": "Albian",
+              "url": "/admin/skosxl/concept/264/"
+            },
+            {
+              "children": [],
+              "name": "Berriasian",
+              "url": "/admin/skosxl/concept/265/"
+            },
+            {
+              "children": [],
+              "name": "Base of Changhsingian",
+              "url": "/admin/skosxl/concept/266/"
+            },
+            {
+              "children": [],
+              "name": "Late/Upper Devonian",
+              "url": "/admin/skosxl/concept/267/"
+            },
+            {
+              "children": [],
+              "name": "Famennian",
+              "url": "/admin/skosxl/concept/268/"
+            },
+            {
+              "children": [],
+              "name": "Frasnian",
+              "url": "/admin/skosxl/concept/269/"
+            },
+            {
+              "children": [],
+              "name": "Sandbian",
+              "url": "/admin/skosxl/concept/270/"
+            },
+            {
+              "children": [],
+              "name": "Late/Upper Ordovician",
+              "url": "/admin/skosxl/concept/271/"
+            },
+            {
+              "children": [],
+              "name": "Mississippian",
+              "url": "/admin/skosxl/concept/272/"
+            },
+            {
+              "children": [],
+              "name": "Upper Mississippian",
+              "url": "/admin/skosxl/concept/273/"
+            },
+            {
+              "children": [],
+              "name": "Lower Mississippian",
+              "url": "/admin/skosxl/concept/274/"
+            },
+            {
+              "children": [],
+              "name": "Carboniferous",
+              "url": "/admin/skosxl/concept/275/"
+            },
+            {
+              "children": [],
+              "name": "Middle Mississippian",
+              "url": "/admin/skosxl/concept/276/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cisuralian",
+              "url": "/admin/skosxl/concept/277/"
+            },
+            {
+              "children": [],
+              "name": "Base of Tithonian",
+              "url": "/admin/skosxl/concept/278/"
+            },
+            {
+              "children": [],
+              "name": "Base of Jiangshanian",
+              "url": "/admin/skosxl/concept/279/"
+            },
+            {
+              "children": [],
+              "name": "Base of Middle Mississippian",
+              "url": "/admin/skosxl/concept/280/"
+            },
+            {
+              "children": [],
+              "name": "Base of Artinskian",
+              "url": "/admin/skosxl/concept/281/"
+            },
+            {
+              "children": [],
+              "name": "Paleozoic",
+              "url": "/admin/skosxl/concept/282/"
+            },
+            {
+              "children": [],
+              "name": "Permian",
+              "url": "/admin/skosxl/concept/283/"
+            },
+            {
+              "children": [],
+              "name": "Early/Lower Triassic",
+              "url": "/admin/skosxl/concept/284/"
+            },
+            {
+              "children": [],
+              "name": "Base of Middle Pennsylvanian",
+              "url": "/admin/skosxl/concept/285/"
+            },
+            {
+              "children": [],
+              "name": "Base of Homerian",
+              "url": "/admin/skosxl/concept/286/"
+            },
+            {
+              "children": [],
+              "name": "Base of Darriwilian",
+              "url": "/admin/skosxl/concept/287/"
+            },
+            {
+              "children": [],
+              "name": "Base of Coniacian",
+              "url": "/admin/skosxl/concept/288/"
+            },
+            {
+              "children": [],
+              "name": "Mesoarchean",
+              "url": "/admin/skosxl/concept/289/"
+            },
+            {
+              "children": [],
+              "name": "Archean",
+              "url": "/admin/skosxl/concept/290/"
+            },
+            {
+              "children": [],
+              "name": "Base of Barremian",
+              "url": "/admin/skosxl/concept/291/"
+            },
+            {
+              "children": [],
+              "name": "Base of Ediacaran",
+              "url": "/admin/skosxl/concept/292/"
+            },
+            {
+              "children": [],
+              "name": "Base of Tortonian",
+              "url": "/admin/skosxl/concept/293/"
+            },
+            {
+              "children": [],
+              "name": "Base of Ectasian",
+              "url": "/admin/skosxl/concept/294/"
+            },
+            {
+              "children": [],
+              "name": "Terreneuvian",
+              "url": "/admin/skosxl/concept/295/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian-Stage 2",
+              "url": "/admin/skosxl/concept/296/"
+            },
+            {
+              "children": [],
+              "name": "Fortunian",
+              "url": "/admin/skosxl/concept/297/"
+            },
+            {
+              "children": [],
+              "name": "Callovian",
+              "url": "/admin/skosxl/concept/298/"
+            },
+            {
+              "children": [],
+              "name": "Middle Jurassic",
+              "url": "/admin/skosxl/concept/299/"
+            },
+            {
+              "children": [],
+              "name": "Base of Eocene",
+              "url": "/admin/skosxl/concept/300/"
+            },
+            {
+              "children": [],
+              "name": "Base of Lutetian",
+              "url": "/admin/skosxl/concept/301/"
+            },
+            {
+              "children": [],
+              "name": "Base of Guzhangian",
+              "url": "/admin/skosxl/concept/302/"
+            },
+            {
+              "children": [],
+              "name": "Moscovian",
+              "url": "/admin/skosxl/concept/303/"
+            },
+            {
+              "children": [],
+              "name": "Middle Pennsylvanian",
+              "url": "/admin/skosxl/concept/304/"
+            },
+            {
+              "children": [],
+              "name": "Base of Bartonian",
+              "url": "/admin/skosxl/concept/305/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cambrian Series 3",
+              "url": "/admin/skosxl/concept/306/"
+            },
+            {
+              "children": [],
+              "name": "Base of Valanginian",
+              "url": "/admin/skosxl/concept/307/"
+            },
+            {
+              "children": [],
+              "name": "Base of Mesoarchean",
+              "url": "/admin/skosxl/concept/308/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cenozoic",
+              "url": "/admin/skosxl/concept/309/"
+            },
+            {
+              "children": [],
+              "name": "Visean",
+              "url": "/admin/skosxl/concept/310/"
+            },
+            {
+              "children": [],
+              "name": "Base of Pragian",
+              "url": "/admin/skosxl/concept/311/"
+            },
+            {
+              "children": [],
+              "name": "Base of Sakmarian",
+              "url": "/admin/skosxl/concept/312/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cambrian Stage 10",
+              "url": "/admin/skosxl/concept/313/"
+            },
+            {
+              "children": [],
+              "name": "Hirnantian",
+              "url": "/admin/skosxl/concept/314/"
+            },
+            {
+              "children": [],
+              "name": "Katian",
+              "url": "/admin/skosxl/concept/315/"
+            },
+            {
+              "children": [],
+              "name": "Base of Priabonian",
+              "url": "/admin/skosxl/concept/316/"
+            },
+            {
+              "children": [],
+              "name": "Base of Floian",
+              "url": "/admin/skosxl/concept/317/"
+            },
+            {
+              "children": [],
+              "name": "Stenian",
+              "url": "/admin/skosxl/concept/318/"
+            },
+            {
+              "children": [],
+              "name": "Calymmian",
+              "url": "/admin/skosxl/concept/319/"
+            },
+            {
+              "children": [],
+              "name": "Rhyacian",
+              "url": "/admin/skosxl/concept/320/"
+            },
+            {
+              "children": [],
+              "name": "Kungurian",
+              "url": "/admin/skosxl/concept/321/"
+            },
+            {
+              "children": [],
+              "name": "Artinskian",
+              "url": "/admin/skosxl/concept/322/"
+            },
+            {
+              "children": [],
+              "name": "Base of Pennsylvanian",
+              "url": "/admin/skosxl/concept/323/"
+            },
+            {
+              "children": [],
+              "name": "Serravallian",
+              "url": "/admin/skosxl/concept/324/"
+            },
+            {
+              "children": [],
+              "name": "Miocene",
+              "url": "/admin/skosxl/concept/325/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Ordovician",
+              "url": "/admin/skosxl/concept/326/"
+            },
+            {
+              "children": [],
+              "name": "Base of Cryogenian",
+              "url": "/admin/skosxl/concept/327/"
+            },
+            {
+              "children": [],
+              "name": "Eoarchean",
+              "url": "/admin/skosxl/concept/328/"
+            },
+            {
+              "children": [],
+              "name": "Holocene",
+              "url": "/admin/skosxl/concept/329/"
+            },
+            {
+              "children": [],
+              "name": "Rupelian",
+              "url": "/admin/skosxl/concept/330/"
+            },
+            {
+              "children": [],
+              "name": "Oligocene",
+              "url": "/admin/skosxl/concept/331/"
+            },
+            {
+              "children": [],
+              "name": "The Present",
+              "url": "/admin/skosxl/concept/332/"
+            },
+            {
+              "children": [],
+              "name": "Lochkovian",
+              "url": "/admin/skosxl/concept/333/"
+            },
+            {
+              "children": [],
+              "name": "Emsian",
+              "url": "/admin/skosxl/concept/334/"
+            },
+            {
+              "children": [],
+              "name": "Tortonian",
+              "url": "/admin/skosxl/concept/335/"
+            },
+            {
+              "children": [],
+              "name": "Base of Hauterivian",
+              "url": "/admin/skosxl/concept/336/"
+            },
+            {
+              "children": [],
+              "name": "Base of Statherian",
+              "url": "/admin/skosxl/concept/337/"
+            },
+            {
+              "children": [],
+              "name": "Middle Ordovician",
+              "url": "/admin/skosxl/concept/338/"
+            },
+            {
+              "children": [],
+              "name": "Orosirian",
+              "url": "/admin/skosxl/concept/339/"
+            },
+            {
+              "children": [],
+              "name": "Bajocian",
+              "url": "/admin/skosxl/concept/340/"
+            },
+            {
+              "children": [],
+              "name": "Aalenian",
+              "url": "/admin/skosxl/concept/341/"
+            },
+            {
+              "children": [],
+              "name": "Bathonian",
+              "url": "/admin/skosxl/concept/342/"
+            },
+            {
+              "children": [],
+              "name": "Neoarchean",
+              "url": "/admin/skosxl/concept/343/"
+            },
+            {
+              "children": [],
+              "name": "Paleoarchean",
+              "url": "/admin/skosxl/concept/344/"
+            },
+            {
+              "children": [],
+              "name": "Base of Mississipian",
+              "url": "/admin/skosxl/concept/345/"
+            },
+            {
+              "children": [],
+              "name": "Chattian",
+              "url": "/admin/skosxl/concept/346/"
+            },
+            {
+              "children": [],
+              "name": "Base of Ladinian",
+              "url": "/admin/skosxl/concept/347/"
+            },
+            {
+              "children": [],
+              "name": "Base of Middle Jurassic",
+              "url": "/admin/skosxl/concept/348/"
+            },
+            {
+              "children": [],
+              "name": "Langhian",
+              "url": "/admin/skosxl/concept/349/"
+            },
+            {
+              "children": [],
+              "name": "Base of Ludlow",
+              "url": "/admin/skosxl/concept/350/"
+            },
+            {
+              "children": [],
+              "name": "Ladinian",
+              "url": "/admin/skosxl/concept/351/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Pleistocene",
+              "url": "/admin/skosxl/concept/352/"
+            },
+            {
+              "children": [],
+              "name": "Base of Ordovician",
+              "url": "/admin/skosxl/concept/353/"
+            },
+            {
+              "children": [],
+              "name": "Base of Chattian",
+              "url": "/admin/skosxl/concept/354/"
+            },
+            {
+              "children": [],
+              "name": "Olenekian",
+              "url": "/admin/skosxl/concept/355/"
+            },
+            {
+              "children": [],
+              "name": "Base of Bathonian",
+              "url": "/admin/skosxl/concept/356/"
+            },
+            {
+              "children": [],
+              "name": "Burdigalian",
+              "url": "/admin/skosxl/concept/357/"
+            },
+            {
+              "children": [],
+              "name": "Base of Messinian",
+              "url": "/admin/skosxl/concept/358/"
+            },
+            {
+              "children": [],
+              "name": "Capitanian",
+              "url": "/admin/skosxl/concept/359/"
+            },
+            {
+              "children": [],
+              "name": "Roadian",
+              "url": "/admin/skosxl/concept/360/"
+            },
+            {
+              "children": [],
+              "name": "Base of Kasimovian",
+              "url": "/admin/skosxl/concept/361/"
+            },
+            {
+              "children": [],
+              "name": "Tournaisian",
+              "url": "/admin/skosxl/concept/362/"
+            },
+            {
+              "children": [],
+              "name": "Base of Capitanian",
+              "url": "/admin/skosxl/concept/363/"
+            },
+            {
+              "children": [],
+              "name": "Induan",
+              "url": "/admin/skosxl/concept/364/"
+            },
+            {
+              "children": [],
+              "name": "Base of Telychian",
+              "url": "/admin/skosxl/concept/365/"
+            },
+            {
+              "children": [],
+              "name": "Base of Proterozoic",
+              "url": "/admin/skosxl/concept/366/"
+            },
+            {
+              "children": [],
+              "name": "Cryogenian",
+              "url": "/admin/skosxl/concept/367/"
+            },
+            {
+              "children": [],
+              "name": "Base of Orosirian",
+              "url": "/admin/skosxl/concept/368/"
+            },
+            {
+              "children": [],
+              "name": "Base of Ludfordian Stage",
+              "url": "/admin/skosxl/concept/369/"
+            },
+            {
+              "children": [],
+              "name": "Base of Katian",
+              "url": "/admin/skosxl/concept/370/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Triassic",
+              "url": "/admin/skosxl/concept/371/"
+            },
+            {
+              "children": [],
+              "name": "Base of Santonian",
+              "url": "/admin/skosxl/concept/372/"
+            },
+            {
+              "children": [],
+              "name": "Darriwilian",
+              "url": "/admin/skosxl/concept/373/"
+            },
+            {
+              "children": [],
+              "name": "Dapingian",
+              "url": "/admin/skosxl/concept/374/"
+            },
+            {
+              "children": [],
+              "name": "Base of Pliocene",
+              "url": "/admin/skosxl/concept/375/"
+            },
+            {
+              "children": [],
+              "name": "Base of Middle Triassic",
+              "url": "/admin/skosxl/concept/376/"
+            },
+            {
+              "children": [],
+              "name": "Base of Phanerozoic",
+              "url": "/admin/skosxl/concept/377/"
+            },
+            {
+              "children": [],
+              "name": "Base of Pridoli",
+              "url": "/admin/skosxl/concept/378/"
+            },
+            {
+              "children": [],
+              "name": "Base of Norian",
+              "url": "/admin/skosxl/concept/379/"
+            },
+            {
+              "children": [],
+              "name": "Siderian",
+              "url": "/admin/skosxl/concept/380/"
+            },
+            {
+              "children": [],
+              "name": "Base of Emsian",
+              "url": "/admin/skosxl/concept/381/"
+            },
+            {
+              "children": [],
+              "name": "Rhaetian",
+              "url": "/admin/skosxl/concept/382/"
+            },
+            {
+              "children": [],
+              "name": "Serpukhovian",
+              "url": "/admin/skosxl/concept/383/"
+            },
+            {
+              "children": [],
+              "name": "Base of Oligocene",
+              "url": "/admin/skosxl/concept/384/"
+            },
+            {
+              "children": [],
+              "name": "Cambrian-Stage 10",
+              "url": "/admin/skosxl/concept/385/"
+            },
+            {
+              "children": [],
+              "name": "Hadean",
+              "url": "/admin/skosxl/concept/386/"
+            },
+            {
+              "children": [],
+              "name": "Base of Selandian",
+              "url": "/admin/skosxl/concept/387/"
+            },
+            {
+              "children": [],
+              "name": "Base of Maastrichtian",
+              "url": "/admin/skosxl/concept/388/"
+            },
+            {
+              "children": [],
+              "name": "Base of Campanian",
+              "url": "/admin/skosxl/concept/389/"
+            },
+            {
+              "children": [],
+              "name": "Base of Middle Ordovician",
+              "url": "/admin/skosxl/concept/390/"
+            },
+            {
+              "children": [],
+              "name": "Changhsingian",
+              "url": "/admin/skosxl/concept/391/"
+            },
+            {
+              "children": [],
+              "name": "Base of Holocene",
+              "url": "/admin/skosxl/concept/392/"
+            },
+            {
+              "children": [],
+              "name": "Base of Calabrian",
+              "url": "/admin/skosxl/concept/393/"
+            },
+            {
+              "children": [],
+              "name": "Base of Neogene",
+              "url": "/admin/skosxl/concept/394/"
+            },
+            {
+              "children": [],
+              "name": "Jiangshanian",
+              "url": "/admin/skosxl/concept/395/"
+            },
+            {
+              "children": [],
+              "name": "Base of Mesozoic",
+              "url": "/admin/skosxl/concept/396/"
+            },
+            {
+              "children": [],
+              "name": "Base of Lopingian",
+              "url": "/admin/skosxl/concept/397/"
+            },
+            {
+              "children": [],
+              "name": "Base of Quaternary",
+              "url": "/admin/skosxl/concept/398/"
+            },
+            {
+              "children": [],
+              "name": "Base of Rhaetian",
+              "url": "/admin/skosxl/concept/399/"
+            },
+            {
+              "children": [],
+              "name": "Base of Furongian",
+              "url": "/admin/skosxl/concept/400/"
+            },
+            {
+              "children": [],
+              "name": "Tonian",
+              "url": "/admin/skosxl/concept/401/"
+            },
+            {
+              "children": [],
+              "name": "Ediacaran",
+              "url": "/admin/skosxl/concept/402/"
+            },
+            {
+              "children": [],
+              "name": "Base of Olenekian",
+              "url": "/admin/skosxl/concept/403/"
+            },
+            {
+              "children": [],
+              "name": "Base of Wenlock",
+              "url": "/admin/skosxl/concept/404/"
+            },
+            {
+              "children": [],
+              "name": "Base of Neoproterozoic",
+              "url": "/admin/skosxl/concept/405/"
+            },
+            {
+              "children": [],
+              "name": "Base of Thanetian",
+              "url": "/admin/skosxl/concept/406/"
+            },
+            {
+              "children": [],
+              "name": "Base of Rhyacian",
+              "url": "/admin/skosxl/concept/407/"
+            },
+            {
+              "children": [],
+              "name": "Base of Turonian",
+              "url": "/admin/skosxl/concept/408/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Mississippian",
+              "url": "/admin/skosxl/concept/409/"
+            },
+            {
+              "children": [],
+              "name": "Base of Devonian",
+              "url": "/admin/skosxl/concept/410/"
+            },
+            {
+              "children": [],
+              "name": "Aquitanian",
+              "url": "/admin/skosxl/concept/411/"
+            },
+            {
+              "children": [],
+              "name": "Messinian",
+              "url": "/admin/skosxl/concept/412/"
+            },
+            {
+              "children": [],
+              "name": "Base of Upper Pennsylvanian",
+              "url": "/admin/skosxl/concept/413/"
+            },
+            {
+              "children": [],
+              "name": "Base of Piacenzian",
+              "url": "/admin/skosxl/concept/414/"
+            },
+            {
+              "children": [],
+              "name": "< no label >",
+              "url": "/admin/skosxl/concept/415/"
+            },
+            {
+              "children": [],
+              "name": "< no label >",
+              "url": "/admin/skosxl/concept/416/"
+            }
+          ],
+          "name": "Geologic Timescale Elements in the International Chronostratigraphic Chart",
+          "url": "/admin/skosxl/collection/77/"
+        }
+      ],
+      "name": "Collections"
+    }

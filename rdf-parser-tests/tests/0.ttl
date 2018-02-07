@@ -1,0 +1,58 @@
+@prefix basic: <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gm: <http://def.seegrid.csiro.au/isotc211/iso19107/2003/geometry#> .
+@prefix gts: <http://resource.geosciml.org/ontology/timescale/gts#> .
+@prefix isc: <http://resource.geosciml.org/classifier/ics/ischart/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sam: <http://def.seegrid.csiro.au/isotc211/iso19156/2011/sampling#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix thors: <http://resource.geosciml.org/ontology/timescale/thors#> .
+@prefix tm: <http://def.seegrid.csiro.au/isotc211/iso19108/2002/temporal#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+isc:Tithonian
+  rdf:type gts:GeochronologicEra ;
+  rdf:type skos:Concept ;
+  gts:rank <http://resource.geosciml.org/ontology/timescale/rank/Age> ;
+  thors:begin isc:BaseTithonian ;
+  thors:end isc:BaseCretaceous ;
+  rdfs:comment "older bound-150.8 +/-4"@en ;
+  rdfs:comment "younger bound-145.5 +/-4"@en ;
+  rdfs:label "Tithonian Age"@en ;
+  owl:sameAs <http://dbpedia.org/resource/Tithonian> ;
+  skos:broader isc:UpperJurassic ;
+  skos:broaderTransitive isc:Jurassic ;
+  skos:broaderTransitive isc:Mesozoic ;
+  skos:broaderTransitive isc:Phanerozoic ;
+  skos:broaderTransitive isc:UpperJurassic ;
+  skos:inScheme <http://resource.geosciml.org/classifier/ics/ischart/2014> ;
+  skos:notation "a1.1.2.2.1.1"^^gts:EraCode ;
+  skos:prefLabel "Tithon"@cs ;
+  skos:prefLabel "Tithon"@fi ;
+  skos:prefLabel "Tithoni"@et ;
+  skos:prefLabel "Tithonian"@en ;
+  skos:prefLabel "Tithonien"@da ;
+  skos:prefLabel "Tithonien"@fr ;
+  skos:prefLabel "Tithoniense"@es ;
+  skos:prefLabel "Tithonium"@de ;
+  skos:prefLabel "Tithonium"@no ;
+  skos:prefLabel "TithoniÃ«n"@nl ;
+  skos:prefLabel "Titoniano"@pt ;
+  skos:prefLabel "Titonis"@lt ;
+  skos:prefLabel "Tyton"@pl ;
+  skos:prefLabel "tithon"@hu ;
+  skos:prefLabel "tithon"@sv ;
+  skos:prefLabel "tithonij"@sl ;
+  skos:prefLabel "titoniano"@it ;
+  skos:prefLabel "titÃ³n"@sk ;
+  skos:prefLabel "Ð¢Ð¸Ñ‚Ð¾Ð½"@bg ;
+  skos:prefLabel "ãƒãƒˆãƒ‹ã‚¢ãƒ³æœŸ"@ja ;
+  skos:prefLabel "æé€šæœŸ"@zh ;
+  foaf:isPrimaryTopicOf <http://sweet.jpl.nasa.gov/2.2/stateTimeGeologic.owl#Tithonian> ;
+.
