@@ -1,197 +1,98 @@
 /** Converts SKOS into a format closer to what we want to display.
 
-    It only supports Turtle/N3 format, as other parsers for JavaScript
-are unacceptably slow. */
-var concepts = {}
-var vocabName = "Vocabulary" // Generic fallback
-var lang = "en"
-const RDFns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-const OWLns = "http://www.w3.org/2002/07/owl#"
-const SKOSns = "http://www.w3.org/2004/02/skos/core#"
+  It only supports Turtle/N3 format for now, as other parsers for JavaScript are unacceptably slow. */
+function fetchVocab(url, callback) {
+  const SKOSns = "http://www.w3.org/2004/02/skos/core#"
 
-function parseVocab_(txt, callback, reject) {
-  new N3.Parser().parse(txt, (err, triple, prefixes) => {
-    if (err) alert(JSON.stringify(err))
+  var rdf = {}
+  function readRDF() {
+    fetch(url).then((response) => response.text()).then((ttl) => {
+      var topConcepts = [], schema
+      new N3.Parser().parse(ttl, (err, triple, prefixes) => {
+        if (err == null && triple == null) loadTopConcepts(topConcepts, schema)
+        if (triple == null) return
 
-    if (!triple) {
-      setTimeout(_normalizeVocab, 0, callback, reject)
-      return
-    }
-    if (!(triple.subject in concepts))
-      concepts[triple.subject] = {id: triple.subject, subconcepts: [],
-            related: []}
-    var concept = concepts[triple.subject]
-
-    if (triple.predicate == RDFns+"type" && triple.object == SKOSns+"Concept")
-      concept.isConcept = true
-    if (triple.predicate == SKOSns+"prefLabel") {
-      var text = triple.object
-      // Perform localization
-      if (text.endsWith("@"+lang))
-        text = text.slice(0, -("@"+lang).length)
-      if (text.endsWith('"') && text[0] == '"')
-          text = text.slice(1, -1)
-      else return
-
-      concept.label = text
-    }
-    if (triple.predicate == OWLns+"sameAs") {
-      if (!(triple.object in concepts))
-        concepts[triple.object] = {id: triple.object, subconcepts: [],
-                related: []}
-
-      var merged = concepts[triple.subject] = concepts[triple.object]
-      merged.subconcepts = merged.subconcepts.concat(concept.subconcepts)
-      merged.related = merged.related.concat(concept.related)
-    }
-
-    if (triple.predicate == SKOSns+"narrower") {
-      if (!(triple.object in concepts))
-        concepts[triple.object] = {id: triple.object, subconcepts: [],
-            related: []}
-      concepts[triple.object].subconcepts.push(triple.subject)
-    }
-    if (triple.predicate == SKOSns+"broader") {
-      concept.subconcepts.push(triple.object)
-    }
-
-    if (triple.predicate == SKOSns+"narrowerTransitive") {
-      if (!(triple.object in concepts))
-        concepts[triple.object] = {id: triple.object, subconcepts: [],
-            related: []}
-      concepts[triple.object].subconcepts.push({
-            transitive: true, id: triple.subject})
-    }
-    if (triple.predicate == SKOSns+"broaderTransitive")
-      concept.subconcepts.push({transitive: true, id: triple.object})
-
-    if (triple.predicate == SKOSns+"related")
-      concept.related.push(triple.object)
-
-    if (triple.predicate == SKOSns+"topConceptOf") {
-      var vocab = concepts[triple.object]
-      if (vocab && vocab.label)
-        vocabName = vocab.label // FIXME Sensitive to triple ordering
-    }
-  })
-}
-function parseVocab(txt) {
-  return new Promise(function(resolve, reject) {
-    parseVocab_(txt, resolve, reject)
-  })
-}
-
-function fetchVocab(url) {
-  return fetch(url).then((response) => response.text()).then(parseVocab)
-}
-
-function _normalizeVocab(callback, reject) {
-  function it1__parents_prop_and_verify() {
-    for (var id in concepts) {
-      if (!concepts.hasOwnProperty(id)) continue
-
-      var concept = concepts[id]
-      concept.parents = []
-      if (!concept.isConcept) {
-        delete concepts[id];
-        continue
-      }
-      if (!("label" in concept))
-        reject("Cannot render vocabulary, unnamed concept '" + id + "'!")
-    }
-
-    setTimeout(it2__apply_simple_parents, 0)
-  }
-  it1__parents_prop_and_verify()
-
-  function it2__apply_simple_parents() {
-    var first = true
-    for (var id in concepts) {
-      if (!concepts.hasOwnProperty(id)) continue
-
-      var concept = concepts[id]
-      for (var subconcept of concept.subconcepts) {
-        if (subconcept.transitive) subconcept = subconcept.id
-
-        var subconceptObj = concepts[subconcept]
-        if (!subconceptObj || !("parents" in subconceptObj))
-          console.log("Invalid concept:", subconcept, subconceptObj)
-        else subconceptObj.parents.push(id)
-      }
-
-      // skos:related is defined as symmetric
-      for (var related of concept.related) {
-        if (!(related in concepts)) console.log("Invalid concept:", related)
-        else if (concepts[related].related.indexOf(id) != -1)
-          concepts[related].related.push(id)
-      }
-    }
-
-    setTimeout(it3__apply_transitivity__assert_acyclic, 0)
-  }
-
-  function it3__apply_transitivity__assert_acyclic() {
-    function walkTree(concept) {
-      var seenSubconcepts = {}
-      concept.ancestorOfCurrent = true
-      for (var i = 0; i < concept.subconcepts.length; i++) {
-        var subconcept = concept.subconcepts[i]
-        if (!subconcept) continue
-
-        var id = subconcept.transitive ? subconcept.id : subconcept
-        if (!(id in concepts) || id in seenSubconcepts) {
-          concept.subconcepts[i] = null
-          continue
-        } else seenSubconcepts[id] = true
-
-        if (subconcept.transitive) {
-          concept.subconcepts[i] = subconcept.id
-          var subconceptObj = concepts[subconcept.id]
-          subconceptObj.parents = subconceptObj.parents.concat(concept.parents)
-
-          subconcept = subconcept.id
+        if (triple.predicate == SKOSns+"hasTopConcept") {
+          if (topConcepts.indexOf(triple.object) == -1)
+            topConcepts.push(triple.object)
+          schema = triple.subject
         }
 
-        // NOTE: SKOS doesn't require this, but our display does. 
-        // And it's a commonly implied property of SKOS graphs. 
-        if (concepts[subconcept].ancestorOfCurrent) {
-          reject("Invalid Vocabulary: A broader concept can't also be narrower!", concept, subconcept)
-          return
+        if (triple.object.endsWith("@en"))
+          triple.object = triple.object.slice(1, -4)
+        else if ("'\"".indexOf(triple.object[0]) >= 0) {
+          if (triple.object.endsWith(triple.object[0]))
+            triple.object = triple.object.slice(1, -1)
+          else return
         }
 
-        walkTree(concepts[subconcept])
+        if (!(triple.subject in rdf)) rdf[triple.subject] = {}
+        if (!(triple.predicate in rdf[triple.subject]))
+          rdf[triple.subject][triple.predicate] = []
+        if (rdf[triple.subject][triple.predicate].indexOf(triple.object) == -1)
+          rdf[triple.subject][triple.predicate].push(triple.object)
+      })
+    })
+  }
+  readRDF()
+
+  function loadSubject(subject, _ignoreSameAs = []) {
+    var data = rdf[subject]
+    if (data == undefined) return {}
+
+    // apply owl:sameAs
+    const OWLns = "http://www.w3.org/2002/07/owl#"
+    if (!(OWLns+"sameAs" in data)) return data // Fast case
+
+    for (var extension of data[OWLns+"sameAs"]) {
+      if (_ignoreSameAs.indexOf(extension) != -1) continue
+      _ignoreSameAs.push(extension)
+
+      for (var other in loadSubject(extension, _ignoreSameAs)) {
+        for (var predicate in other)
+          data[predicate] = other[predicate].concat(subject[predicate])
       }
-      concept.ancestorOfCurrent = false
     }
 
-    for (var id in concepts) {
-      if (!concepts.hasOwnProperty(id) || concepts[id].parents.length) continue
-      walkTree(concepts[id])
-    }
-
-    setTimeout(it4__deduplicate, 0)
+    delete data[OWLns+"sameAs"] // Don't spend this effort again
   }
 
-  function it4__deduplicate() {
-    function deduplicate(arr) {
-      var ret = []
-      var seen = {}
-      for (var concept of arr) {
-        if (!concept || arr in seen) continue
-        seen[concept] = true
-        ret.push(concept)
-      }
-      return ret
+  function loadTopConcepts(concepts, schema) {
+    if (concepts.length == 1) callback(loadConcept(concepts[0]))
+    else {
+      var children = []
+      for (var concept of concepts) children.push(loadConcept(concept))
+
+      //var schemaData = loadSubject(schema)
+      var label = /*SKOSns+"prefLabel" in schemaData ?
+          schemaData[SKOSns+"prefLabel"][0] :*/ "Vocabulary"
+
+      callback({
+        label: label, subconcepts: children, id: concept,
+        related: [], parents: []
+      })
+    }
+  }
+
+  function loadConcept(concept) {
+    var data = loadSubject(concept)
+
+    if (data == undefined) {
+      console.log("got invalid concept", concept, data)
+      return {}
     }
 
-    for (var id in concepts) {
-      if (!concepts.hasOwnProperty(id)) continue;
-      var concept = concepts[id]
-      concept.parents = deduplicate(concept.parents)
-      concept.subconcepts = deduplicate(concept.subconcepts)
-      concept.related = deduplicate(concept.related)
-    }
+    var children = []
+    for (var child of data[SKOSns+"narrower"] ||
+        data[SKOSns+"narrowerTransitive"] || [])
+      children.push(loadConcept(child))
 
-    setTimeout(callback, 0, {concepts, title: vocabName})
+    return {label: data[SKOSns+"prefLabel"][0],
+            subconcepts: children,
+            id: concept,
+            related: data[SKOSns+"related"] || [],
+            parents: data[SKOSns+"broaderTransitive"] ||
+                      data[SKOSns+"broader"] || []
+    }
   }
 }

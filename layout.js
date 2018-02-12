@@ -12,7 +12,8 @@ function layoutVocab(vocab, callback, title, font, rootID) {
   var renderTree = {id: "", label: title, subconcepts: []}
 
   function buildRenderTree(concept) {
-    var layer = {id: concept.id, label: concept.label, subconcepts: []}
+    var layer = {id: concept.id, label: concept.label, subconcepts: [],
+                parents: concept.parents}
     for (var subconcept of concept.subconcepts)
       layer.subconcepts.push(buildRenderTree(vocab[subconcept]))
 
@@ -34,6 +35,9 @@ function layoutVocab(vocab, callback, title, font, rootID) {
 
     // No point having an artificial root, if we've got real one.
     if (renderTree.subconcepts.length == 1) renderTree = renderTree.subconcepts[0]
+    else for (var branch of renderTree.subconcepts) {
+      branch.parents.push(null) // Link up to the root.
+    }
     renderTree.offset = 0 // Won't otherwise get one.
 
     rootID = renderTree.id
@@ -78,7 +82,6 @@ function layoutVocab(vocab, callback, title, font, rootID) {
       return
     }
     layer.fontSize = fontSize
-    console.log("estimateLayout()")
 
     /**
      * Uses canvas.measureText to compute and return the width of the given text of given font in pixels.
@@ -241,7 +244,7 @@ function layoutVocab(vocab, callback, title, font, rootID) {
     .then(() => {
       var words = flattenRenderTree(renderTree, [])
       setTimeout(callback, 0, words, flatConcepts, {
-            width: renderTree.parallelSize, height: renderTree.perpendicularSize}, rootID)
+            width: renderTree.parallelSize, height: renderTree.perpendicularSize}, renderTree.parents)
     }, 0)
   chain.trigger()
 }

@@ -1,78 +1,74 @@
 function parseUrl(url, callback) {
   const SKOSns = "http://www.w3.org/2004/02/skos/core#"
 
-  var rdf = {}
-  fetch(url).then((response) => response.text()).then((text) => {
-    new N3.Parser().parse(text, (err, triple, prefixes) => {
+  fetch(url).then((response) => response.text()).then((ttl) => {
+    var topConcepts = [], schema
+    var labels = {}
+    new N3.Parser().parse(ttl, (err, triple, prefixes) => {
       if (err == null && triple == null) {
-        completed(); return;
+        var vocabName = schema in labels ? labels[schema] : "Vocabulary"
+        fetchTopConcepts(topConcepts, schema, vocabName); return;
       }
       if (triple == null) return
 
-      if (triple.object.endsWith("@en")) {
-        triple.object = triple.object.slice(0, -3)
-      } else if (triple.object[0] == '"') return
-
-      if (!(triple.subject in rdf)) rdf[triple.subject] = {}
-      if (!(triple.predicate in rdf[triple.subject]))
-        rdf[triple.subject][triple.predicate] = []
-      rdf[triple.subject][triple.predicate].push(triple.object)
+      if (triple.predicate == SKOSns+"hasTopConcept") {
+        topConcepts.push(triple.object)
+        schema = triple.subject
+      }
+      if (triple.predicate == SKOSns+"prefLabel" && triple.object.endsWith("@en"))
+        labels[triple.subject] = triple.object.slice(1, -4)
     })
+
+    function fetchTopConcepts(concepts, schema, labels) {
+      if (concepts.length == 1) fetch(concepts[0], callback)
+      else {
+        fetchAll(concepts, (concepts) => {
+          callback({
+            name: label,
+            children: concepts,
+            url: schema
+          })
+        })
+      }
+    }
+
+    function fetchAll(concepts, cb) {
+      if (concepts == undefined) return cb([])
+
+      var countdown = concepts.length, results = []
+      for (let i = 0; i < concepts.length; i++) fetch(concepts[i], (data) => {
+        results[i] = data
+        countdown--
+        if (countdown == 0) cb(results)
+      })
+    }
+
+    function fetch(concept, cb) {
+      loadSubject(ttl, concept, (data) => {
+        fetchAll(data[SKOSns+"narrower"], (children) => {
+          cb({name: data[SKOSns+"prefLabel"][0],
+            children: children,
+            url: concept
+          })
+        })
+      })
+    }
   })
+}
 
-  function completed() {
-    console.log(rdf)
+function loadSubject(ttl, subject, callback) {
+  var data = {}
+  new N3.Parser().parse(ttl, (err, triple, prefixes) => {
+    if (triple == null && err == null) callback(data)
+    if (triple == null || triple.subject != subject) return
 
-    var vocab = {}
-    for (var subject in rdf) {
-      var concept = rdf[subject]
-      // TODO filter out non-concepts
+    if (triple.object.endsWith("@en")) triple.object = triple.object.slice(1, -4)
+    else if (triple.object[0] == '"' || triple.object[0] == "'") return
 
-      var children = []
-      var childSet = {}
-      for (var child of concept[SKOSns+"narrower"] || []) {
-        if (!(child in rdf) || child in childSet) continue
-        childSet[child] = true
-        children.push(child)
-      }
-
-      var simpleConcept = {children: children,
-              name: concept[SKOSns+"prefLabel"][0].slice(1, -1),
-              url: subject}
-      vocab[subject] = simpleConcept
-    }
-
-    for (var subject in rdf) {
-      var concept = rdf[subject]
-      var parents = {}
-      for (var parent of concept[SKOSns+"broader"] || []) {
-        if (!(parent in rdf) || parent in parents) continue
-        parents[parent] = true
-
-        var parentConcept = vocab[parent]
-        if (parentConcept.children.indexOf(subject) == -1) parentConcept.children.push(subject)
-      }
-    }
-
-    var nonRoots = {}
-    for (var id in vocab) {
-      var concept = vocab[id]
-      for (var i = 0; i < concept.children.length; i++) {
-        var child = concept.children[i]
-        nonRoots[child] = true
-        concept.children[i] = vocab[child]
-      }
-    }
-
-    var concepts = []
-    for (var id in vocab) {
-      if (id in nonRoots) continue
-      concepts.push(vocab[id])
-    }
-
-    if (concepts.length == 1) callback(concepts[0])
-    else callback({children: concepts, name: "Vocabulary"})
-  }
+    if (!(triple.predicate in data)) data[triple.predicate] = []
+    if (data[triple.predicate].indexOf(triple.object) == -1)
+      data[triple.predicate].push(triple.object)
+  })
 }
 
 function fetchJSON(url, callback) {

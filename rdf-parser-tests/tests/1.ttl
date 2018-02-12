@@ -16,6 +16,10 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+isc:
+  a skos:ConceptSchema;
+  skos:hasTopConcept isc:UpperJurassic
+.
 isc:Kimmeridgian
   rdf:type gts:GeochronologicEra ;
   rdf:type skos:Concept ;
