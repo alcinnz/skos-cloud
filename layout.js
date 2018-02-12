@@ -5,53 +5,15 @@
     Outputs a JSON tree containing id, label, colour, scale, horizontal, x, & y
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
-function layoutVocab(vocab, callback, title, font, rootID) {
-  if (!title) title = "Vocabulary"
+function layoutVocab(renderTree, callback, font) {
   if (!font) font = {size: 25, minSize: 10, step: 5, style: "bold ? sans-serif"}
 
-  var renderTree = {id: "", label: title, subconcepts: []}
-
-  function buildRenderTree(concept) {
-    var layer = {id: concept.id, label: concept.label, subconcepts: [],
-                parents: concept.parents}
-    for (var subconcept of concept.subconcepts)
-      layer.subconcepts.push(buildRenderTree(vocab[subconcept]))
-
-    return layer
+  var flatConcepts = renderTree.flatConcepts || [], newSubconcepts = []
+  for (var concept of renderTree.subconcepts) {
+    if (concept.subconcepts.length == 0) flatConcepts.push(concept)
+    else newSubconcepts.push(concept)
   }
-
-  if ("label" in vocab) {
-    // The render tree was already passed in
-    renderTree = vocab
-    rootID = renderTree.id
-  } else if (rootID) {
-    renderTree = buildRenderTree(vocab[rootID])
-  } else {
-    for (var id in vocab) {
-      if (!vocab.hasOwnProperty(id) || vocab[id].parents.length > 0) continue
-      var concept = concepts[id]
-      renderTree.subconcepts.push(buildRenderTree(concept))
-    }
-
-    // No point having an artificial root, if we've got real one.
-    if (renderTree.subconcepts.length == 1) renderTree = renderTree.subconcepts[0]
-    else for (var branch of renderTree.subconcepts) {
-      branch.parents.push(null) // Link up to the root.
-    }
-    renderTree.offset = 0 // Won't otherwise get one.
-
-    rootID = renderTree.id
-  }
-
-  /* These "flatConcepts" can really clutter the visualization without
-        adding anything to it. */
-  var flatConcepts = renderTree.flatConcepts || [], newBranches = []
-  for (var branch of renderTree.subconcepts) {
-    if (branch.subconcepts.length > 0) newBranches.push(branch)
-    else flatConcepts.push(branch)
-  }
-  renderTree.subconcepts = newBranches
-  renderTree.flatConcepts = flatConcepts
+  renderTree.subconcepts = newSubconcepts
 
   function colorize(layer, depth) {
     layer.colour = d3.hsl(Math.random()*360, 1, 0.2 - 0.06*depth).toString()

@@ -48,13 +48,13 @@ function fetchVocab(url, callback) {
       if (_ignoreSameAs.indexOf(extension) != -1) continue
       _ignoreSameAs.push(extension)
 
-      for (var other in loadSubject(extension, _ignoreSameAs)) {
-        for (var predicate in other)
-          data[predicate] = other[predicate].concat(subject[predicate])
-      }
+      var other = loadSubject(extension, _ignoreSameAs)
+      for (var predicate in other)
+        data[predicate] = other[predicate].concat(subject[predicate])
     }
 
     delete data[OWLns+"sameAs"] // Don't spend this effort again
+    return data
   }
 
   function loadTopConcepts(concepts, schema) {
@@ -68,7 +68,7 @@ function fetchVocab(url, callback) {
           schemaData[SKOSns+"prefLabel"][0] :*/ "Vocabulary"
 
       callback({
-        label: label, subconcepts: children, id: concept,
+        label: label, subconcepts: children, id: schema,
         related: [], parents: []
       })
     }
@@ -77,8 +77,8 @@ function fetchVocab(url, callback) {
   function loadConcept(concept) {
     var data = loadSubject(concept)
 
-    if (data == undefined) {
-      console.log("got invalid concept", concept, data)
+    if (!(SKOSns+"prefLabel" in data)) {
+      console.log("Invalid concept!", concept, data)
       return {}
     }
 

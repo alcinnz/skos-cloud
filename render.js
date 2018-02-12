@@ -28,11 +28,11 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents = [
     .on('mouseover', function(data) {
       var my_id = data.id
       d3.selectAll('[data-id="'+my_id+'"]').classed('skos-hover', true)
-      for (var id of vocab[my_id].parents) {
+      for (var id of data.renderTree.parents) {
         d3.select('[data-id="'+id+'"]').classed('skos-parent', true)
       }
 
-      for (var id of vocab[my_id].related) {
+      for (var id of data.renderTree.related) {
         d3.select('[data-id="'+id+'"]').classed('skos-related', true)
       }
     })
@@ -53,7 +53,8 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents = [
   conceptList.enter().append('li').text((data) => data.label)
   conceptList.text((data) => data.label)
 
-  var $broader = d3.select('#js-parents').selectAll('a').data(parents)
+  // FIXME
+  /*var $broader = d3.select('#js-parents').selectAll('a').data(parents)
   $broader.exit().remove()
   $broader.enter().append('a').merge($broader)
     .text((data) => data ? vocab[data].label : "Full Vocabulary")
@@ -63,5 +64,5 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents = [
       layoutVocab(vocab, (words, flatConcepts, size, rootID) => {
         renderVocab(words, $canvas, size, vocab, flatConcepts, rootID)
       }, vocab.title, undefined, data)
-    })
+    })*/
 }
