@@ -18,10 +18,10 @@
 <body>
   <p id="js-parents"></p>
   <script>
-    fetchVocab("timescale-isc2014.ttl", vocabParsed)
+    fetchVocab("agrovoc.ttl", vocabParsed)
 
     function vocabParsed(vocab) {
-      console.log("vocab parsed")
+      console.log("vocab parsed", vocab)
       document.querySelector('div p').innerText = "Laying out vocabulary..."
 
       layoutVocab(vocab, (words, flatConcepts, size, rootID) => {

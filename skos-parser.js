@@ -58,6 +58,16 @@ function fetchVocab(url, callback) {
   }
 
   function loadTopConcepts(concepts, schema) {
+    // If toplevel concepts aren't specified, try looking for them. 
+    if (concepts.length == 0) {
+      concepts = []
+      for (var subject in rdf) {
+        if (!(SKOSns+"broader" in rdf[subject]
+            || SKOSns+"broaderTransitive" in rdf[subject]))
+          concepts.push(subject)
+      }
+    }
+
     if (concepts.length == 1) callback(loadConcept(concepts[0]))
     else {
       var children = []
@@ -79,13 +89,15 @@ function fetchVocab(url, callback) {
 
     if (!(SKOSns+"prefLabel" in data)) {
       console.log("Invalid concept!", concept, data)
-      return {}
+      return null
     }
 
     var children = []
     for (var child of data[SKOSns+"narrower"] ||
-        data[SKOSns+"narrowerTransitive"] || [])
-      children.push(loadConcept(child))
+        data[SKOSns+"narrowerTransitive"] || []) {
+      var subconcept = loadConcept(child)
+      if (subconcept !== null) children.push(subconcept)
+    }
 
     return {label: data[SKOSns+"prefLabel"][0],
             subconcepts: children,

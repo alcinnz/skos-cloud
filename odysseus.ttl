@@ -3,37 +3,41 @@
 @prefix : <odysseus:data/extensions.ttl#> .
 
 : rdf:title "Odysseus Extensions"@en;
-    rdf:comment "Webpages for Odysseus to aid your surfing with."@en.
+    rdf:comment "Webpages for Odysseus to aid your surfing with."@en;
+    skos:hasTopConcept :nav-aid.
 
 :nav-aid a skos:Concept; skos:prefLabel "Navigation Aid"@en;
-    skos:note "A page Odysseus should use to aid your web surfing"@en.
+    skos:note "A page Odysseus should use to aid your web surfing"@en;
+    skos:narrowerTransitive :search, :vocabulary, :share-link, :alterations.
 
 :search a skos:Concept; skos:prefLabel "Search Engine"@en;
     skos:note "Sites to search via the addressbar"@en;
-    skos:narrowerTransitive :nav-aid.
+    skos:broaderTransitive :nav-aid;
+    skos:narrowerTransitive :search-mono, :search-topical.
 :search-mono a skos:Concept; skos:prefLabel "Mono Search"@en;
     skos:note "Search engines which of which can search only one at a time"@en;
-    skos:narrowerTransitive :search.
+    skos:broaderTransitive :search.
 :search-topical a skos:Concept; skos:prefLabel "Topical Search"@en;
     skos:note "Search engines which can all be searched simultaneously."@en;
-    skos:narrowerTransitive :search.
+    skos:broaderTransitive :search.
 
 :vocabulary a skos:Concept; skos:prefLabel "Vocabulary"@en;
     skos:note "A SKOS vocabulary for organizing your bookmarks, like this one"@en;
-    skos:narrowerTransitive :nav-aid.
+    skos:broaderTransitive :nav-aid.
 :share-link a skos:Concept; skos:prefLabel "Share Link"@en;
     skos:note "A share link to be accessible via the ★ menu"@en;
-    skos:narrowerTransitive :nav-aid.
+    skos:broaderTransitive :nav-aid.
 
 :alterations a skos:Concept; skos:prefLabel "Page Modifications"@en;
     skos:note "Resources intended to alter specified pages."@en;
-    skos:narrowerTransitive :nav-aid.
+    skos:broaderTransitive :nav-aid;
+    skos:narrowerTransitive :blocker, :userscript, :userstyle.
 :blocker a skos:Concept; skos:prefLabel "Content Blockers"@en;
     skos:note "Blocks specified resources from loading, e.g. web trackers"@en;
-    skos:narrowerTransitive :alterations.
+    skos:broaderTransitive :alterations.
 :userscript a skos:Concept; skos:prefLabel "UserScripts"@en;
     skos:note "Altered behaviour of webpages. Be careful of these."@en;
-    skos:narrowerTransitive :alterations.
+    skos:broaderTransitive :alterations.
 :userstyle a skos:Concept; skos:prefLabel "UserStyles"@en;
-    skos:note "Altered presentation of webpages, A.K.A website&browser themes"@en;
-    skos:narrowerTransitive :alterations.
+    skos:note "Altered presentation of webpages, A.K.A website & browser themes"@en;
+    skos:broaderTransitive :alterations.

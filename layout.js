@@ -15,9 +15,14 @@ function layoutVocab(renderTree, callback, font) {
   }
   renderTree.subconcepts = newSubconcepts
 
-  function colorize(layer, depth) {
+  function colorize(layer, depth, path = []) {
     layer.colour = d3.hsl(Math.random()*360, 1, 0.2 - 0.06*depth).toString()
-    for (var branch of layer.subconcepts) colorize(branch, depth + 1)
+
+    path.push(layer.label)
+    if (layer.subconcepts === undefined)
+      console.log(layer, "has undefined branches", path)
+
+    for (var branch of layer.subconcepts) colorize(branch, depth + 1, path.slice())
   }
   colorize(renderTree, 0)
 
