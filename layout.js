@@ -83,7 +83,7 @@ function layoutVocab(renderTree, callback, font) {
     layer.top = []; layer.bottom = []
     var topSize = 0, bottomSize = 0
     for (var branch of layer.branches) {
-      if (layer.perpendicularSize == 0) continue
+      if (branch.perpendicularSize == 0) continue
 
       var combinedTop = topSize + branch.perpendicularSize
       var combinedBottom = bottomSize + branch.perpendicularSize
