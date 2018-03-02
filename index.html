@@ -24,9 +24,9 @@
       console.log("vocab parsed", vocab)
       document.querySelector('div p').innerText = "Laying out vocabulary..."
 
-      layoutVocab(vocab, (words, flatConcepts, size, rootID) => {
+      layoutVocab(vocab, (words, flatConcepts, size, parents) => {
         d3.selectAll('div p').remove()
-        renderVocab(words, d3.select('div'), size, vocab.concepts, flatConcepts, rootID)
+        renderVocab(words, d3.select('div'), size, vocab.concepts, flatConcepts, parents, vocab.rdf)
       })
     }
   </script>

@@ -5,8 +5,9 @@
     Outputs a JSON tree containing id, label, colour, scale, horizontal, x, & y
 properties. The id field can be used to map back into the input, which can
 be helpful for communicating those additional properties via interaction. */
-function layoutVocab(renderTree, callback, font) {
+function layoutVocab(renderTree, callback, font, rdf) {
   if (!font) font = {size: 25, minSize: 10, step: 5, style: "bold ? sans-serif"}
+  console.log("Laying out", renderTree)
 
   var flatConcepts = renderTree.flatConcepts || [], newSubconcepts = []
   for (var concept of renderTree.subconcepts) {

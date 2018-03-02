@@ -68,7 +68,9 @@ function fetchVocab(url, callback) {
       }
     }
 
-    if (concepts.length == 1) callback(loadConcept(concepts[0]))
+    if (concepts.length == 1) {
+      callback(loadConcept(concepts[0]))
+    }
     else {
       var children = []
       for (var concept of concepts) children.push(loadConcept(concept))
@@ -78,6 +80,7 @@ function fetchVocab(url, callback) {
           schemaData[SKOSns+"prefLabel"][0] :*/ "Vocabulary"
 
       callback({
+        rdf: rdf,
         label: label, subconcepts: children, id: schema,
         related: [], parents: []
       })
@@ -99,7 +102,8 @@ function fetchVocab(url, callback) {
       if (subconcept !== null) children.push(subconcept)
     }
 
-    return {label: data[SKOSns+"prefLabel"][0],
+    return {rdf: rdf,
+            label: data[SKOSns+"prefLabel"][0],
             subconcepts: children,
             id: concept,
             related: data[SKOSns+"related"] || [],

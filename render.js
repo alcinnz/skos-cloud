@@ -1,4 +1,4 @@
-function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents = []) {
+function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents, rdf) {
   var bgColour = '#fff'
   $canvas.style('position', 'relative')
         .style('width', size.width+'px').style('height', size.height+'px')
@@ -42,8 +42,8 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents = [
       d3.selectAll('.skos-related').classed('skos-related', false)
     })
     .on('click', (data) => {
-      layoutVocab(data.renderTree, (words, flatConcepts, size, rootID) => {
-        renderVocab(words, $canvas, size, vocab, flatConcepts, rootID)
+      layoutVocab(data.renderTree, (words, flatConcepts, size, parents) => {
+        renderVocab(words, $canvas, size, vocab, flatConcepts, parents, rdf)
       }, vocab.title)
     })
 
@@ -54,13 +54,15 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents = [
   conceptList.text((data) => data.label)
 
   // FIXME
-  /*var $broader = d3.select('#js-parents').selectAll('a').data(parents)
+  var $broader = d3.select('#js-parents').selectAll('a').data(parents)
   $broader.exit().remove()
   $broader.enter().append('a').merge($broader)
-    .text((data) => data ? vocab[data].label : "Full Vocabulary")
+    .text((data) => data ?
+        rdf[data]["http://www.w3.org/2004/02/skos/core#prefLabel"][0]
+        : "Full Vocabulary")
     .style('text-decoration', 'overline').style('cursor', 'pointer')
     .style('padding', '5px')
-    .on('click', (data) => {
+    /*.on('click', (data) => {
       layoutVocab(vocab, (words, flatConcepts, size, rootID) => {
         renderVocab(words, $canvas, size, vocab, flatConcepts, rootID)
       }, vocab.title, undefined, data)
