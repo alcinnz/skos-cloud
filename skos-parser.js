@@ -4,7 +4,7 @@
 function fetchVocab(url, callback, root) {
   const SKOSns = "http://www.w3.org/2004/02/skos/core#"
 
-  var rdf = {url: url}, schema = url
+  var rdf = {}, schema = url
   function readRDF() {
     fetch(url).then((response) => response.text()).then((ttl) => {
       var topConcepts = []
@@ -70,24 +70,21 @@ function fetchVocab(url, callback, root) {
           concepts.push(subject)
       }
     }
+    rdf.url = url
 
-    if (concepts.length == 1) {
-      callback(loadConcept(concepts[0]))
-    }
-    else {
-      var children = []
-      for (var concept of concepts) children.push(loadConcept(concept))
+    // Now actually generate the root element.
+    var children = []
+    for (var concept of concepts) children.push(loadConcept(concept))
 
-      //var schemaData = loadSubject(schema)
-      var label = /*SKOSns+"prefLabel" in schemaData ?
-          schemaData[SKOSns+"prefLabel"][0] :*/ "Vocabulary"
+    var schemaData = loadSubject(schema)
+    var label = SKOSns+"prefLabel" in schemaData ?
+        schemaData[SKOSns+"prefLabel"][0] : "Vocabulary"
 
-      callback({
-        rdf: rdf,
-        label: label, subconcepts: children, id: schema,
-        related: [], parents: []
-      })
-    }
+    callback({
+      rdf: rdf,
+      label: label, subconcepts: children, id: schema,
+      related: [], parents: []
+    })
   }
 
   function loadConcept(concept) {

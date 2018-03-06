@@ -57,7 +57,7 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents, rd
   var $broader = d3.select('#js-parents').selectAll('a').data(parents)
   $broader.exit().remove()
   $broader.enter().append('a').merge($broader)
-    .text((data) => data ?
+    .text((data) => data in rdf ?
         rdf[data]["http://www.w3.org/2004/02/skos/core#prefLabel"][0]
         : "Full Vocabulary")
     .style('text-decoration', 'overline').style('cursor', 'pointer')
@@ -65,7 +65,7 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents, rd
     .on('click', (data) => {
       fetchVocab(rdf.url, (data) => {
         layoutVocab(data, (words, flatConcepts, size, parents) => {
-          renderVocab(words, $canvas, size, vocab, flatConcepts, parents, data.rdf)
+          renderVocab(words, $canvas, size, vocab, flatConcepts, parents, rdf)
         })
       }, data)
     })

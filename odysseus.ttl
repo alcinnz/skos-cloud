@@ -2,7 +2,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix : <odysseus:data/extensions.ttl#> .
 
-: rdf:title "Odysseus Extensions"@en;
+: skos:prefLabel "Odysseus Extensions"@en;
     rdf:comment "Webpages for Odysseus to aid your surfing with."@en;
     skos:hasTopConcept :nav-aid.
 
