@@ -1,13 +1,13 @@
 /** Converts SKOS into a format closer to what we want to display.
 
   It only supports Turtle/N3 format for now, as other parsers for JavaScript are unacceptably slow. */
-function fetchVocab(url, callback) {
+function fetchVocab(url, callback, root) {
   const SKOSns = "http://www.w3.org/2004/02/skos/core#"
 
-  var rdf = {}
+  var rdf = {url: url}, schema = url
   function readRDF() {
     fetch(url).then((response) => response.text()).then((ttl) => {
-      var topConcepts = [], schema
+      var topConcepts = []
       new N3.Parser().parse(ttl, (err, triple, prefixes) => {
         if (err == null && triple == null) loadTopConcepts(topConcepts, schema)
         if (triple == null) return
@@ -58,6 +58,9 @@ function fetchVocab(url, callback) {
   }
 
   function loadTopConcepts(concepts, schema) {
+    // If we're given a root to use, start there instead
+    if (root != undefined && root != schema) return callback(loadConcept(root))
+
     // If toplevel concepts aren't specified, try looking for them. 
     if (concepts.length == 0) {
       concepts = []
@@ -107,8 +110,8 @@ function fetchVocab(url, callback) {
             subconcepts: children,
             id: concept,
             related: data[SKOSns+"related"] || [],
-            parents: data[SKOSns+"broaderTransitive"] ||
-                      data[SKOSns+"broader"] || []
+            parents: [schema].concat(data[SKOSns+"broaderTransitive"] ||
+                      data[SKOSns+"broader"] || [])
     }
   }
 }

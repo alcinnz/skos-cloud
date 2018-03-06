@@ -62,9 +62,11 @@ function renderVocab(words, $canvas, size, vocab = {}, flatConcepts, parents, rd
         : "Full Vocabulary")
     .style('text-decoration', 'overline').style('cursor', 'pointer')
     .style('padding', '5px')
-    /*.on('click', (data) => {
-      layoutVocab(vocab, (words, flatConcepts, size, rootID) => {
-        renderVocab(words, $canvas, size, vocab, flatConcepts, rootID)
-      }, vocab.title, undefined, data)
-    })*/
+    .on('click', (data) => {
+      fetchVocab(rdf.url, (data) => {
+        layoutVocab(data, (words, flatConcepts, size, parents) => {
+          renderVocab(words, $canvas, size, vocab, flatConcepts, parents, data.rdf)
+        })
+      }, data)
+    })
 }
